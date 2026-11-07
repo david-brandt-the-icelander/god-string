@@ -90,18 +90,21 @@ free. The cached length and hash survived, because the text hadn't changed, only
 that shared the converted payload now pointed at the same value, so comparing any two of them came down to comparing
 two pointers.
 
+Comparing did the same. When two GStrings with different payloads turned out to be equal, character by character,
+GString kept one payload and released the other, and every GString that had shared the released one got the one that
+was kept. From then on, comparing any of them came down to comparing two pointers. If one of the two was a literal
+compiled into the binary, the literal won. It cost nothing to keep and was never freed, so the allocated copy went,
+and every GString that had held it now borrowed the literal.
+
 The tricks themselves are older than GString, and most of them are still in use. *Tricks of the string trade*
 collects them, along with the ones that came later.
 
 ## The scorecard
 
 Strings are full of things programmers believe that aren't true. The next two parts list them: 54 *Falsehoods
-programmers believe about strings* and 15 *Falsehoods programmers believe about localisation*, each with what GString
-did about it. Of the 54, GString solved 23, got 15 partly right and left 14 unsolved, and 2 were never a string's
-problem. Of the 15, it got 2 partly right and left 9 unsolved, and 4 were never a string's problem. The pattern
-matters more than the numbers.
+programmers believe about strings* and 15 *Falsehoods programmers believe about localisation*.
 
-**What it solved was representation, memory and speed:** what a string is made of, where it lives, who frees it, and
+**What GString solved was representation, memory and speed:** what a string is made of, where it lives, who frees it, and
 what it costs. That was GString's job, and it did it.
 
 **What it left unsolved was meaning:** what a character is to the person reading it, when two strings are the same

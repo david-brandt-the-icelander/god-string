@@ -88,12 +88,18 @@ That is GString's payload, made automatic. A GString knew what it carried, and a
 `const char*` could be indexed in constant time while a variable-width one had to be walked. The modern versions
 choose the representation themselves. GString had to take whatever the faction that made the string had chosen.
 
-## Convert once, then share
+## Convert once, compare once, then share
 
 GString's own twist: when a string had to be converted, because some library function wanted a `std::wstring`, it was
 converted once and the result replaced the payload. Every GString that shared the payload got the converted version.
 The cached length and hash survived, because the text hadn't changed, only its representation. And every GString that
 shared the payload now pointed at the same value, so comparing any two of them came down to comparing two pointers.
+
+Comparing did the same. When two GStrings with different payloads turned out to be equal, character by character, they
+were left sharing one of the payloads, and every GString that had shared the other got it too. If one of the two was a
+literal in the binary, the literal won, and the allocated copy was released. It was interning without the table: equal
+strings ended up as the same pointer, but only the ones that had actually been compared, and only after the first
+comparison had paid for it.
 
 ## Borrow what lives forever
 
