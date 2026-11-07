@@ -99,6 +99,10 @@ and every GString that had held it now borrowed the literal.
 The tricks themselves are older than GString, and most of them are still in use. *Tricks of the string trade*
 collects them, along with the ones that came later.
 
+GString's source is long gone. The [god-string](https://github.com/david-brandt-the-icelander/god-string/tree/main/src/gstring)
+repository has a reconstruction of its headers, written in 2026 in the C++ of 1999: what GString might have looked
+like, not what it was.
+
 ## The scorecard
 
 Strings are full of things programmers believe that aren't true. The next two parts list them: 54 *Falsehoods
