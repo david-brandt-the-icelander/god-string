@@ -1,0 +1,192 @@
+{
+  "$schema": "../../../Meta/Agents/Skills/describe-user-journey/schema.json",
+  "kind": "user-journey",
+  "title": "Reading The Great String War",
+  "folder": "articles/the-great-string-war",
+  "description": "A reader's way through the eleven parts, in the order the series sets out in part 1 and the README, with the detour part 1 offers to the reconstructed headers. Each part stands alone, and parts refer to each other by title; this is the order the series is written to be read in, set-ups first and payoffs last.",
+  "sources": [
+    {
+      "path": "articles/the-great-string-war/README.md",
+      "symbol": "The Great String War"
+    },
+    {
+      "path": "articles/the-great-string-war/01-the-great-string-war.md",
+      "symbol": "The series"
+    }
+  ],
+  "entities": [
+    {
+      "id": "read-the-series",
+      "name": "Read the series",
+      "description": "From the war at OZ that GString ended, through what strings really are and what GString did about each part of that, to what Y kept.",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        },
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The series"
+        }
+      ],
+      "persona": "Reader",
+      "actorDocument": "Actors/reader.md",
+      "goal": "Understand how GString ended the Great String War, what strings are really made of, and what Y kept from GString.",
+      "stages": [
+        {
+          "id": "the-war",
+          "context": "Starting the series with part 1.",
+          "touchpoint": "Part 1, The Great String War",
+          "action": "Reads why the RPC layer at OZ needed one more string class, how it got its name, its pieces, and how a GString was built inside.",
+          "outcome": "Knows GString's pieces (the payload, the factory for literals, the GSpot, the GSubString, the GStringList and GRegularExpression), that it solved representation, memory and speed but not meaning, and the plan of the other ten parts.",
+          "sources": [
+            {
+              "path": "articles/the-great-string-war/01-the-great-string-war.md",
+              "symbol": "What a GString was"
+            },
+            {
+              "path": "articles/the-great-string-war/01-the-great-string-war.md",
+              "symbol": "The scorecard"
+            },
+            {
+              "path": "articles/the-great-string-war/01-the-great-string-war.md",
+              "symbol": "The series"
+            }
+          ]
+        },
+        {
+          "id": "the-headers",
+          "context": "Part 1 links to the reconstruction of GString's headers in this repository.",
+          "touchpoint": "src/gstring/README.md, on GitHub",
+          "action": "Follows the link and looks at what GString might have looked like in the C++ of 1999.",
+          "outcome": "Sees the classes the articles name declared as headers, each saying what is memory and what is invented, and that they are not the original.",
+          "sources": [
+            {
+              "path": "articles/the-great-string-war/01-the-great-string-war.md",
+              "symbol": "Inside a GString"
+            },
+            {
+              "path": "src/gstring/README.md",
+              "symbol": "GString, reconstructed"
+            }
+          ]
+        },
+        {
+          "id": "the-falsehoods",
+          "context": "Parts 2 and 3, the falsehoods.",
+          "touchpoint": "Parts 2 and 3, Falsehoods programmers believe about strings, and about localisation",
+          "action": "Reads 54 falsehoods about strings and 15 about localisation, each with GString's verdict.",
+          "outcome": "Sees the pattern part 1 promised: GString solved the falsehoods about representation, memory and speed, left those about meaning, and most of localisation was out of a string's reach.",
+          "sources": [
+            {
+              "path": "articles/the-great-string-war/02-falsehoods-programmers-believe-about-strings.md",
+              "symbol": "The score"
+            },
+            {
+              "path": "articles/the-great-string-war/03-falsehoods-programmers-believe-about-localisation.md",
+              "symbol": "The score"
+            }
+          ]
+        },
+        {
+          "id": "what-a-string-is",
+          "context": "Parts 4 to 6, the string types and Unicode.",
+          "touchpoint": "Parts 4 to 6, Every string in the building, The myth of the wide character, and Equal, equivalent, and in order",
+          "action": "Reads the string types GString had to speak, the history of UCS-2, UTF-16 and UCS-4, the GSpot, and the difference between normalisation, comparison and collation.",
+          "outcome": "Knows why a character has no fixed size and why GString walked strings with a GSpot instead of indexing them, and why GString compared and collated but never normalised.",
+          "sources": [
+            {
+              "path": "articles/the-great-string-war/04-every-string-in-the-building.md",
+              "symbol": "Who frees what"
+            },
+            {
+              "path": "articles/the-great-string-war/05-the-myth-of-the-wide-character.md",
+              "symbol": "X marks the spot"
+            },
+            {
+              "path": "articles/the-great-string-war/06-equal-equivalent-and-in-order.md",
+              "symbol": "What GString did"
+            }
+          ]
+        },
+        {
+          "id": "not-copying",
+          "context": "Parts 7 to 9, performance.",
+          "touchpoint": "Parts 7 to 9, Shlemiel and the string list, Borrowed, not copied, and Tricks of the string trade",
+          "action": "Reads why a + b + c is slow and how the GStringList avoided it, how GSubStrings and literals shared storage, and the classic tricks GString used and what became of them.",
+          "outcome": "Knows how GString avoided copying and comparing, and which of its tricks later languages kept under other names.",
+          "sources": [
+            {
+              "path": "articles/the-great-string-war/07-shlemiel-and-the-string-list.md",
+              "symbol": "The GStringList"
+            },
+            {
+              "path": "articles/the-great-string-war/08-borrowed-not-copied.md",
+              "symbol": "The two questions"
+            },
+            {
+              "path": "articles/the-great-string-war/09-tricks-of-the-string-trade.md",
+              "symbol": "Convert once, compare once, then share"
+            }
+          ]
+        },
+        {
+          "id": "regular-expressions",
+          "context": "Part 10, regular expressions; part 1 called Perl's \"as crazy as Cocaine Bear\".",
+          "touchpoint": "Part 10, Crazier than Cocaine Bear",
+          "action": "Reads how GRegularExpression accepted every dialect in the building, the corner it cut on backtracking, and the outages unbounded backtracking later caused.",
+          "outcome": "Knows why limiting backtracking mattered, and what Y does on purpose about it.",
+          "sources": [
+            {
+              "path": "articles/the-great-string-war/10-crazier-than-cocaine-bear.md",
+              "symbol": "GRegularExpression"
+            },
+            {
+              "path": "articles/the-great-string-war/10-crazier-than-cocaine-bear.md",
+              "symbol": "Why that corner mattered"
+            },
+            {
+              "path": "articles/the-great-string-war/10-crazier-than-cocaine-bear.md",
+              "symbol": "What Y does"
+            }
+          ]
+        },
+        {
+          "id": "what-y-kept",
+          "context": "Part 11, the last part.",
+          "touchpoint": "Part 11, Every method you could want",
+          "action": "Reads GString's catalogue of methods, the case for a CISC string class, and what Y kept.",
+          "outcome": "The set-ups of earlier parts pay off: the war was never won and ended when GString made it not matter, and Y gets to decide what a string means before anyone has a favourite.",
+          "sources": [
+            {
+              "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+              "symbol": "The catalogue"
+            },
+            {
+              "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+              "symbol": "What Y kept"
+            },
+            {
+              "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+              "symbol": "The war is over"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relatedViews": [
+    {
+      "kind": "component",
+      "folder": "src/gstring",
+      "path": "src/gstring/.dev/component-diagram.json",
+      "relationship": "The headers the reader reaches from part 1, in the stage the-headers."
+    },
+    {
+      "kind": "class",
+      "folder": "src/gstring",
+      "path": "src/gstring/.dev/class-diagram.json",
+      "relationship": "The classes the articles name, as the headers declare them."
+    }
+  ]
+}

@@ -20,9 +20,11 @@ collation, concatenation, borrowing, the classic optimisations, and regular expr
 | 11 | [Every method you could want](11-every-method-you-could-want.md) | The CISC approach to strings, and what Y kept from GString. | `every-method-you-could-want` |
 
 These are the working copies. The versions in the site's format, with front matter and US spelling, are in
-[icelander.net](https://github.com/david-brandt-the-icelander/icelander.net) under `articles/the_great_string_war/`,
-and [notes.md](notes.md) is the notes file for them: what changed in the move, what is memory and what is not, and
-what is still for the author to check.
+[icelander.net](https://github.com/david-brandt-the-icelander/icelander.net) under `articles/the_great_string_war/`.
+The notes for them are knowledge files in [`.dev/`](.dev/): what is still for the author to decide, and what changed
+in the move, in [decisions.json](.dev/decisions.json); what every part carries in
+[requirements.json](.dev/requirements.json); what the parts rely on in [references.json](.dev/references.json); and
+what needs help outside Markdown in [limitations.json](.dev/limitations.json).
 
 Every part carries the date line *Built at OZ, 1998–2002 · Written November 2026*, and opens with a short note saying
 what in it is memory and what is not. The notes should stay when the parts are published. Parts refer to each other by
@@ -41,8 +43,10 @@ title, in italics, so that the references read the same here and on the site.
   comparison and collation; ropes and builders in later languages; borrowing substrings in Java, Go, Swift, C++ and
   Rust; caching, interning, copy-on-write, the small string optimisation and compact representations; backtracking and
   automata, and the outages backtracking caused; and the byte counts, normalisations and orderings of the examples.
-- **Y's design documents:** the strings section of [`../../proposal/Y-proposal.md`](../../proposal/Y-proposal.md)
+- **Y's design documents,** in [padresmurfa/y](https://github.com/padresmurfa/y): the strings section of
+  [`proposal/Y-proposal.md`](https://github.com/padresmurfa/y/blob/main/proposal/Y-proposal.md)
   (§ 3.3, *Strings: the y-string library*), the string ideas of earlier iterations in
-  [`../../proposal/Y-idea-harvest.md`](../../proposal/Y-idea-harvest.md) (§ 3.1, § 3.2, § 3.5 and § 3.7), the
-  constraint language's strings in [`../../proposal/constraint-language.md`](../../proposal/constraint-language.md),
-  and the Rust implementation in [`../../examples/y-string`](../../examples/y-string/).
+  [`proposal/Y-idea-harvest.md`](https://github.com/padresmurfa/y/blob/main/proposal/Y-idea-harvest.md) (§ 3.1, § 3.2,
+  § 3.5 and § 3.7), the constraint language's strings in
+  [`proposal/constraint-language.md`](https://github.com/padresmurfa/y/blob/main/proposal/constraint-language.md),
+  and the Rust implementation in [`examples/y-string`](https://github.com/padresmurfa/y/tree/main/examples/y-string).

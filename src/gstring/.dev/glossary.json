@@ -1,0 +1,175 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/glossary.schema.json",
+  "kind": "glossary",
+  "title": "Terms in the GString headers",
+  "folder": "src/gstring",
+  "entities": [
+    {
+      "id": "payload",
+      "title": "Payload",
+      "summary": "The native string a GString carries, by pointer, with what it points to (its carrier), what its bytes mean (its encoding) and who frees it (its ownership). GPayload.",
+      "notToBeConfusedWith": [
+        "Body: what GStrings share, which points at a payload"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GPayload"
+        }
+      ]
+    },
+    {
+      "id": "body",
+      "title": "Body",
+      "summary": "What GStrings share, copy-on-write: a reference count, the generation, the cached length and hashes, and the payload. GBody.",
+      "notToBeConfusedWith": [
+        "Payload: bodies can share one payload, as conversion and comparison leave them"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GBody"
+        }
+      ]
+    },
+    {
+      "id": "carrier",
+      "title": "Carrier",
+      "summary": "What a payload's pointer points to: a char*, a wchar_t*, a BSTR, a foreign string object held by value, a string list, a slice of another payload, or nothing. GCarrier::Type.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GCarrier"
+        }
+      ]
+    },
+    {
+      "id": "literal",
+      "title": "Literal",
+      "summary": "A payload compiled into the binary's read-only data, which GString borrows for free, never frees, and keeps when two equal strings are made to share one payload. GString::Literal, GOwnership::Literal.",
+      "notToBeConfusedWith": [
+        "Borrowed: also never freed, but never handed on and never the survivor"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString::Literal"
+        },
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GOwnership::Literal"
+        }
+      ]
+    },
+    {
+      "id": "borrowed",
+      "title": "Borrowed",
+      "summary": "A payload the caller promised outlives every GString that shares it. GString never frees it and never hands it on. GString::Borrow, GOwnership::Borrowed.",
+      "notToBeConfusedWith": [
+        "Literal",
+        "A GSubString, which borrows another GString's storage by holding a reference to its body"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString::Borrow"
+        },
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GOwnership::Borrowed"
+        }
+      ]
+    },
+    {
+      "id": "survivor",
+      "title": "Survivor",
+      "summary": "The payload kept when a comparison finds two GStrings with different payloads equal; both bodies then point at it. GSurvivor.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GSurvivor"
+        }
+      ],
+      "relationships": [
+        {
+          "relation": "relates-to",
+          "path": "src/gstring/.dev/decisions.json",
+          "entityId": "survivor-rules"
+        }
+      ]
+    },
+    {
+      "id": "generation",
+      "title": "Generation",
+      "summary": "A counter in the body that goes up whenever its payload is replaced, so that a GSpot walking the old payload knows to find its place again by character index.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GBody::generation"
+        },
+        {
+          "path": "src/gstring/gspot.hpp",
+          "symbol": "GSpot::Resync"
+        }
+      ]
+    },
+    {
+      "id": "character",
+      "title": "Character",
+      "summary": "A Unicode code point. Every length names its unit: bytes, code units or characters.",
+      "notToBeConfusedWith": [
+        "Code unit: one byte of UTF-8, or two bytes of UTF-16",
+        "Extended grapheme cluster: what a reader sees as one character, defined in 2008, after GString"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString"
+        },
+        {
+          "path": "src/gstring/gconfig.hpp",
+          "symbol": "GCodePoint"
+        }
+      ]
+    },
+    {
+      "id": "string-list",
+      "title": "String list",
+      "summary": "The pieces of a GString made with +, kept unjoined as its payload until something needs the characters in one piece. GStringList, GCarrier::StringList.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstringlist.hpp",
+          "symbol": "GStringList"
+        }
+      ]
+    },
+    {
+      "id": "slice",
+      "title": "Slice",
+      "summary": "The payload of a GString made from a GSubString: an offset into another payload, which keeps the original alive. GCarrier::Slice.",
+      "notToBeConfusedWith": [
+        "GSubString::Detach, which copies just the piece's characters and lets the original go"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GCarrier::Slice"
+        },
+        {
+          "path": "src/gstring/gsubstring.hpp",
+          "symbol": "GSubString::Detach"
+        }
+      ]
+    }
+  ]
+}

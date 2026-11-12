@@ -1,0 +1,39 @@
+{
+  "$schema": "../Meta/Agents/Knowledge/schemas/decisions.schema.json",
+  "kind": "decisions",
+  "title": "Decisions for the repository",
+  "folder": ".",
+  "entities": [
+    {
+      "id": "vision",
+      "title": "What is god-string for, and what comes next?",
+      "summary": "The README says what the repository holds, not what it is for or whether more will come; only the owner can say.",
+      "status": "open",
+      "context": "The README calls the repository a recreation of the god-string that was used in iPulse, and it holds a published series of articles and headers marked as speculative. Whether it is finished as a companion to the articles, or will grow (more series, an implementation of the headers), is not written down, and the knowledge catalogue forbids inventing intent.",
+      "options": [
+        {
+          "title": "The owner states it",
+          "consequences": "A sentence or two becomes vision.json in the root's .dev, with the owner as origin, and wanted work becomes backlog items in the folders that would own it."
+        },
+        {
+          "title": "Leave it unstated",
+          "consequences": "The root has no vision; nothing else changes."
+        }
+      ],
+      "waitingOn": "The owner",
+      "origin": {
+        "kind": "review",
+        "by": "Coding agent",
+        "date": "2026-11-12",
+        "description": "Found while bringing the repository in line with human-assisted-software-development."
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "README.md",
+          "symbol": "god-string"
+        }
+      ]
+    }
+  ]
+}

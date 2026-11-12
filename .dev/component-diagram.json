@@ -1,0 +1,108 @@
+{
+  "$schema": "../Meta/Agents/Skills/describe-component-diagram/schema.json",
+  "kind": "component",
+  "title": "god-string component diagram",
+  "folder": ".",
+  "description": "The repository's two parts, the article series and the reconstructed headers built from it, the skills and catalogue its .dev folders follow, and the repositories outside it that the series comes from and goes to. Nothing here is built or deployed.",
+  "sources": [
+    {
+      "path": "README.md",
+      "symbol": "god-string"
+    },
+    {
+      "path": "articles/the-great-string-war/README.md",
+      "symbol": "Sources"
+    },
+    {
+      "path": "src/gstring/README.md",
+      "symbol": "What they are built from"
+    },
+    {
+      "path": "articles/the-great-string-war/01-the-great-string-war.md",
+      "symbol": "Inside a GString"
+    }
+  ],
+  "components": [
+    {
+      "id": "god-string",
+      "name": "god-string",
+      "responsibility": "A recreation of the god-string used in iPulse: the series of articles about it, and a speculative reconstruction of its headers.",
+      "folder": "."
+    },
+    {
+      "id": "series",
+      "name": "The Great String War (articles/the-great-string-war)",
+      "responsibility": "The working copies of the eleven-part series for icelander.net, and its README.",
+      "folder": "articles/the-great-string-war"
+    },
+    {
+      "id": "headers",
+      "name": "GString, reconstructed (src/gstring)",
+      "responsibility": "C++ headers showing what GString might have looked like, declaring an interface and implementing none of it.",
+      "folder": "src/gstring",
+      "diagram": "src/gstring/.dev/component-diagram.json"
+    },
+    {
+      "id": "agents",
+      "name": "Skills and knowledge catalogue (Meta/Agents)",
+      "responsibility": "How the .dev files and Actors/ are written, and the two validators that check them; copied from human-assisted-software-development.",
+      "folder": "Meta/Agents"
+    },
+    {
+      "id": "site",
+      "name": "icelander.net",
+      "responsibility": "The site, in its own repository, that publishes the series from its own copies under articles/the_great_string_war/.",
+      "external": true
+    },
+    {
+      "id": "y",
+      "name": "Y's design documents (padresmurfa/y)",
+      "responsibility": "The proposal, idea harvest, constraint language and y-string implementation that part 11 and part 10 draw on; the series was first written there.",
+      "external": true
+    }
+  ],
+  "relationships": [
+    {
+      "from": "god-string",
+      "to": "series",
+      "kind": "contains",
+      "description": "The articles."
+    },
+    {
+      "from": "god-string",
+      "to": "headers",
+      "kind": "contains",
+      "description": "The headers."
+    },
+    {
+      "from": "god-string",
+      "to": "agents",
+      "kind": "contains",
+      "description": "The skills and catalogue."
+    },
+    {
+      "from": "headers",
+      "to": "series",
+      "kind": "depends-on",
+      "description": "Built from the articles' memory of GString; gstring.hpp follows part 11's catalogue, and the headers point to the parts by title."
+    },
+    {
+      "from": "series",
+      "to": "headers",
+      "kind": "depends-on",
+      "description": "Part 1 links to the headers on GitHub."
+    },
+    {
+      "from": "series",
+      "to": "y",
+      "kind": "depends-on",
+      "description": "What Y kept and what Y does is taken from Y's design documents."
+    },
+    {
+      "from": "site",
+      "to": "series",
+      "kind": "depends-on",
+      "description": "Its copies of the eleven parts were made from the working copies on 2026-11-06, and have been edited there since."
+    }
+  ]
+}

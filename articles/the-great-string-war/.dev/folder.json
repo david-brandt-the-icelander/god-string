@@ -1,0 +1,41 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/folder.schema.json",
+  "kind": "folder",
+  "title": "The Great String War",
+  "folder": "articles/the-great-string-war",
+  "entities": [
+    {
+      "id": "folder",
+      "title": "The Great String War",
+      "summary": "The working copies of an eleven-part series for icelander.net about GString and about strings in general, with the README that indexes them.",
+      "purpose": "Holds the eleven parts as Markdown, one file per part numbered 01 to 11, and the README that lists them with their subtitles and slugs and says what they are built from. The site's own copies, with front matter and US spelling, live in the icelander.net repository under articles/the_great_string_war/; only the articles live there, and this folder keeps the working copies and their notes.",
+      "boundaries": [
+        "The text was written in the Y repository (padresmurfa/y pull request #57, articles/the-great-string-war/) and moved to icelander.net as drafts on 2026-11-06; icelander.net published all eleven parts on 2026-11-07.",
+        "The headers in src/gstring/ are built from these parts, and part 1 links to them; the parts do not depend on the headers.",
+        "The parts link to their sources on the web; nothing here checks those links."
+      ],
+      "details": "The notes kept beside the parts until 2026-11-12 (notes.md) are now in this .dev folder: what is still for the author to decide is in decisions.json, what the parts must carry is in requirements.json, what they rely on is in references.json, and the known plain-text problems are in limitations.json. Its publishing steps were done when the series went out on 2026-11-07 and are not kept. What changed in the move to icelander.net is in the context of the decision about the working copies, `working-copies`.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        },
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The series"
+        }
+      ],
+      "links": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "label": "The series"
+        },
+        {
+          "url": "https://github.com/david-brandt-the-icelander/icelander.net/tree/main/articles/the_great_string_war",
+          "label": "The site's copies, in the icelander.net repository"
+        }
+      ]
+    }
+  ]
+}

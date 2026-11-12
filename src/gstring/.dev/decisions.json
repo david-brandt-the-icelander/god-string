@@ -1,0 +1,118 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/decisions.schema.json",
+  "kind": "decisions",
+  "title": "Decisions about the GString headers",
+  "folder": "src/gstring",
+  "entities": [
+    {
+      "id": "speculative-reconstruction",
+      "title": "A reconstruction, labelled as one",
+      "summary": "The headers say what GString might have looked like, not what it was, and say so in every file.",
+      "status": "decided",
+      "context": "GString's source is gone. The articles tell its story from memory and part 1 links here, so a reader could take the headers for a recovered artefact.",
+      "decision": "Write the headers from memory, the articles and guesswork, keep only the five class names the articles use (GString, GSubString, GSpot, GStringList, GRegularExpression), and open every header with \"A speculative reconstruction\" and a pointer to the README. Where a specific rule is invented, the header says so.",
+      "rationale": "A historical curiosity to go with the articles, honest about what is memory and what is invented.",
+      "decidedBy": "The author",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "GString, reconstructed"
+        },
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GSurvivor"
+        },
+        {
+          "path": "README.md",
+          "symbol": "The headers"
+        }
+      ]
+    },
+    {
+      "id": "period-style",
+      "title": "Written to pass for 1999",
+      "summary": "C++98 and Win32, #pragma once behind _MSC_VER, a DLL export macro, enums wrapped in structs, MFC's MakeUpper and MakeReverse naming, and no exceptions.",
+      "status": "decided",
+      "context": "GString was written at OZ between 1998 and 2002, in C++ on Windows.",
+      "decision": "Use the idioms of the time throughout: #if _MSC_VER > 1000 / #pragma once in every header, GSTRING_API for __declspec(dllexport) and dllimport, struct-wrapped enums such as GEncoding::Type, Make... verbs for case and reversal, and bool* ok out-parameters instead of exceptions.",
+      "decidedBy": "The author",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "What they are built from"
+        },
+        {
+          "path": "src/gstring/gconfig.hpp",
+          "symbol": "GSTRING_API"
+        },
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString::ToLong"
+        }
+      ]
+    },
+    {
+      "id": "survivor-rules",
+      "title": "Which payload two equal strings keep",
+      "summary": "A literal wins; a merely borrowed payload never wins; otherwise the left-hand operand's payload is kept.",
+      "status": "decided",
+      "context": "When a comparison finds two GStrings with different payloads equal, both are made to share one. The articles remember only that a literal always won; the headers need a whole rule.",
+      "options": [
+        {
+          "title": "A literal wins",
+          "consequences": "Memory. It costs nothing to keep and is never freed."
+        },
+        {
+          "title": "A borrowed payload never wins",
+          "consequences": "Invented. A borrowed payload cannot promise to outlive the other string's sharers."
+        },
+        {
+          "title": "Otherwise, the left-hand operand's payload",
+          "consequences": "Invented. Any fixed choice would do."
+        }
+      ],
+      "decision": "All three, in that order, declared as GSurvivor.",
+      "rationale": "gpayload.hpp says rule 1 is memory and rules 2 and 3 are invented.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GSurvivor"
+        },
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GPayload::CanBeShared"
+        }
+      ]
+    },
+    {
+      "id": "syntax-check-define",
+      "title": "A define that lets a modern compiler read the headers",
+      "summary": "GSTRING_SYNTAX_CHECK replaces the Windows headers with the two types the headers need, so the declarations can be checked anywhere.",
+      "status": "decided",
+      "context": "The headers refuse any platform but Windows with #error, as GString did, but they are written in 2026 on machines that may not be Windows.",
+      "decision": "Without _WIN32 and without GSTRING_SYNTAX_CHECK, #error. With GSTRING_SYNTAX_CHECK, typedef OLECHAR and BSTR and go on.",
+      "rationale": "To show the declarations are well-formed, and nothing more; gconfig.hpp says nothing built that way would ever have run.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gconfig.hpp",
+          "symbol": "GSTRING_SYNTAX_CHECK"
+        },
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "Checking them"
+        }
+      ],
+      "relationships": [
+        {
+          "relation": "verified-by",
+          "path": "src/gstring/.dev/verification.json",
+          "entityId": "syntax-check"
+        }
+      ]
+    }
+  ]
+}

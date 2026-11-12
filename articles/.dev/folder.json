@@ -1,0 +1,30 @@
+{
+  "$schema": "../../Meta/Agents/Knowledge/schemas/folder.schema.json",
+  "kind": "folder",
+  "title": "Articles",
+  "folder": "articles",
+  "entities": [
+    {
+      "id": "folder",
+      "title": "Articles",
+      "summary": "Articles about GString, one folder per series; today only The Great String War.",
+      "purpose": "Groups the working copies of article series written for icelander.net, each in a folder of its own with a README that indexes its parts.",
+      "boundaries": [
+        "The site's own copies of the articles live in the icelander.net repository, not here."
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "README.md",
+          "symbol": "The articles"
+        }
+      ],
+      "links": [
+        {
+          "path": "articles/the-great-string-war/.dev/folder.json",
+          "label": "The Great String War"
+        }
+      ]
+    }
+  ]
+}

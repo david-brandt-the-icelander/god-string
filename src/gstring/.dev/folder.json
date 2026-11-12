@@ -1,0 +1,68 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/folder.schema.json",
+  "kind": "folder",
+  "title": "GString, reconstructed",
+  "folder": "src/gstring",
+  "entities": [
+    {
+      "id": "folder",
+      "title": "GString, reconstructed",
+      "summary": "C++ headers showing what GString might have looked like: a speculative reconstruction written in 2026, declaring an interface and implementing none of it.",
+      "purpose": "Holds twelve headers that declare GString, GSpot, GSubString, GStringList, GTokeniser, GRegularExpression and their supporting types, in the style of 1999 (C++98, Win32, a DLL export macro, enums wrapped in structs, no exceptions), to go with the articles in articles/the-great-string-war/. Part 1 of the articles links here.",
+      "boundaries": [
+        "Nothing here is the original, whose source is gone. Every name, signature, enum, field and layout is invented, apart from the class names GString, GSubString, GSpot, GStringList and GRegularExpression, which the articles name.",
+        "The headers declare and never define: there is no .cpp file, no build and no test, and they have never been part of a program that ran.",
+        "The catalogue of methods in gstring.hpp follows part 11 of the articles, Every method you could want, whose own catalogue is an assumption still for the author to check.",
+        "The only check is the syntax check in the folder's README, which shows the declarations are well-formed and nothing more."
+      ],
+      "details": "The headers' comments say, for each piece, what is memory (as the articles record it) and what is invented; gpayload.hpp's header comment and GSurvivor's rules are the clearest case. src/gstring/README.md is the page a person reads first: what the headers are built from, a table of them, a usage sample and the check.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "GString, reconstructed"
+        },
+        {
+          "path": "src/gstring/all.hpp",
+          "symbol": "GSTRING_ALL_HPP"
+        },
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString"
+        },
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GSurvivor"
+        }
+      ],
+      "links": [
+        {
+          "path": "src/gstring/README.md",
+          "label": "GString, reconstructed"
+        },
+        {
+          "path": "src/gstring/.dev/component-diagram.json",
+          "label": "The headers"
+        },
+        {
+          "path": "src/gstring/.dev/class-diagram.json",
+          "label": "The classes"
+        }
+      ],
+      "relationships": [
+        {
+          "relation": "depends-on",
+          "path": "articles/the-great-string-war/.dev/folder.json",
+          "entityId": "folder",
+          "description": "Built from the articles: their memory of GString, and part 11's catalogue."
+        },
+        {
+          "relation": "depends-on",
+          "path": "articles/the-great-string-war/.dev/decisions.json",
+          "entityId": "method-catalogue",
+          "description": "If the author changes part 11's catalogue, gstring.hpp follows it."
+        }
+      ]
+    }
+  ]
+}

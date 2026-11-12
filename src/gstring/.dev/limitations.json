@@ -1,0 +1,129 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/limitations.schema.json",
+  "kind": "limitations",
+  "title": "What the GString headers do not do",
+  "folder": "src/gstring",
+  "entities": [
+    {
+      "id": "declarations-only",
+      "title": "Declared, never implemented",
+      "summary": "The headers declare an interface and define none of it, apart from a few one-line accessors written inline.",
+      "impact": "Nothing that includes them can link or run. Every behavior the comments describe (copy-on-write, conversion that replaces the payload, comparison that shares it, the GSpot's resync, the regular-expression budget) is a description of what GString did, not something this code does.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "GString, reconstructed"
+        },
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GBody::Replace"
+        }
+      ]
+    },
+    {
+      "id": "windows-only",
+      "title": "Windows only",
+      "summary": "gconfig.hpp stops the build with #error on anything but Windows, unless GSTRING_SYNTAX_CHECK is defined.",
+      "impact": "Unix, with its four-byte wchar_t, is not supported. GSTRING_SYNTAX_CHECK only lets a modern compiler read the declarations; it replaces windows.h and oleauto.h with typedefs for OLECHAR and BSTR, and nothing built that way would run.",
+      "workaround": "Define GSTRING_SYNTAX_CHECK to check the declarations on another platform.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gconfig.hpp",
+          "symbol": "GSTRING_SYNTAX_CHECK"
+        }
+      ]
+    },
+    {
+      "id": "no-embedded-nulls",
+      "title": "No embedded nulls",
+      "summary": "A GString holds no null characters; a BSTR may, and GString would not accept them.",
+      "impact": "Binary data, or a BSTR carrying nulls, cannot be held as a GString.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gpayload.hpp",
+          "symbol": "GCarrier::Bstr"
+        },
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "What they are built from"
+        }
+      ]
+    },
+    {
+      "id": "characters-are-code-points",
+      "title": "A character is a code point",
+      "summary": "Lengths, GSpot steps and comparisons count code points; extended grapheme clusters arrived in 2008, after GString.",
+      "impact": "A flag, an emoji sequence or a letter with a combining accent counts as several characters.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString::LengthInCharacters"
+        }
+      ]
+    },
+    {
+      "id": "no-normalisation",
+      "title": "Nothing is normalised",
+      "summary": "Compare goes by code point whatever the payloads, and nothing is normalised, so é as one code point and é as e and an accent are different strings.",
+      "impact": "Canonically equivalent text compares unequal, as it did everywhere else in the building. Collate goes by the process's locale, which on a server was the server's.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString::Compare"
+        },
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString::Collate"
+        }
+      ]
+    },
+    {
+      "id": "case-without-locale",
+      "title": "Case mapping ignores the locale",
+      "summary": "The upper case of i is I everywhere, including Turkey; none of the factions' old classes knew the dotless ı, and GString gave each faction the answer its old class gave.",
+      "impact": "Turkish text is upper- and lower-cased wrongly.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString::MakeUpper"
+        }
+      ]
+    },
+    {
+      "id": "limited-backtracking",
+      "title": "Limited backtracking",
+      "summary": "GRegularExpression supports backtracking only to a budget of steps per match; running out is the outcome TooAmbitious, never a hung server.",
+      "impact": "A pattern that needs more backtracking than the budget gets TooAmbitious instead of a match, and needs rewriting.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gregularexpression.hpp",
+          "symbol": "GMatchOutcome::TooAmbitious"
+        }
+      ]
+    },
+    {
+      "id": "no-indexing",
+      "title": "No operator[]",
+      "summary": "GString has no direct indexing; a position is a GSpot, and only a fixed-width payload can jump straight to one.",
+      "impact": "Reaching the nth character of a variable-width payload means walking to it.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString"
+        },
+        {
+          "path": "src/gstring/gspot.hpp",
+          "symbol": "GSpot::Advance"
+        }
+      ]
+    }
+  ]
+}

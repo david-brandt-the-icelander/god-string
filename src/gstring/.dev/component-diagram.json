@@ -1,0 +1,513 @@
+{
+  "$schema": "../../../Meta/Agents/Skills/describe-component-diagram/schema.json",
+  "kind": "component",
+  "title": "GString headers component diagram",
+  "folder": "src/gstring",
+  "description": "The reconstructed GString headers, one per piece of the library, and what each includes or names. They declare an interface and implement none of it, so every relationship is an #include or a type a declaration names, never a call. all.hpp is the one to include. The foreign string libraries are forward-declared in gconfig.hpp, not included; the Windows headers are included only on Windows.",
+  "sources": [
+    {
+      "path": "src/gstring/all.hpp",
+      "symbol": "GSTRING_ALL_HPP"
+    },
+    {
+      "path": "src/gstring/gconfig.hpp",
+      "symbol": "GSTRING_API"
+    },
+    {
+      "path": "src/gstring/gstring.hpp",
+      "symbol": "GString"
+    },
+    {
+      "path": "src/gstring/gpayload.hpp",
+      "symbol": "GBody"
+    },
+    {
+      "path": "src/gstring/README.md",
+      "symbol": "The headers"
+    }
+  ],
+  "components": [
+    {
+      "id": "gstring",
+      "name": "GString, reconstructed",
+      "responsibility": "A speculative, header-only declaration of GString, in the C++98 and Win32 of 1999; implemented nowhere, and never part of a program that ran.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "all",
+      "name": "Umbrella header (all.hpp)",
+      "responsibility": "Includes every other header, in order. The one to include.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "config",
+      "name": "Platform and basic types (gconfig.hpp)",
+      "responsibility": "Refuses anything but Windows with #error unless GSTRING_SYNTAX_CHECK is defined; the GSTRING_API export macro; GByte, GUnit16, GCodePoint, GLength and GHash; forward declarations of the foreign string classes.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "encoding",
+      "name": "Encodings (gencoding.hpp)",
+      "responsibility": "GEncoding::Type, the encoding every narrow string and every conversion names, and GCodePage.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "fwd",
+      "name": "Forward declarations (gfwd.hpp)",
+      "responsibility": "Names every class and struct, and the GStrings and GSubStrings vectors.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "payload",
+      "name": "Payload and body (gpayload.hpp)",
+      "responsibility": "GPayload, a native string with its carrier, encoding and ownership; GBody, the copy-on-write body with the cached length and hashes and the generation; GSurvivor, which payload two equal strings keep.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "format",
+      "name": "Format arguments (gformat.hpp)",
+      "responsibility": "GFormatArg, one typed argument to GString::Format.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "string",
+      "name": "GString (gstring.hpp)",
+      "responsibility": "The string class and its whole catalogue of methods: making, asking, finding, taking pieces, changing, case, splitting, comparing, escaping, converting and walking.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "spot",
+      "name": "GSpot (gspot.hpp)",
+      "responsibility": "A position in a GString, stepping by character, code unit or byte, that finds its place again when the body's payload is replaced.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "substring",
+      "name": "GSubString (gsubstring.hpp)",
+      "responsibility": "A piece of a GString that holds the original and two GSpots instead of copying; Detach copies it.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "stringlist",
+      "name": "GStringList (gstringlist.hpp)",
+      "responsibility": "The pieces of a + b + c, not yet joined; Flatten joins them into one payload.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "tokeniser",
+      "name": "GTokeniser (gtokeniser.hpp)",
+      "responsibility": "Lazy splitting into GSubStrings, at whitespace, a set of separators or a regular expression.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "regex",
+      "name": "GRegularExpression (gregularexpression.hpp)",
+      "responsibility": "GRegularExpression, its dialects and options, and GMatch, whose outcome may be TooAmbitious when the backtracking budget runs out.",
+      "folder": "src/gstring"
+    },
+    {
+      "id": "windows",
+      "name": "Windows headers (windows.h, oleauto.h)",
+      "responsibility": "The Win32 API and BSTR; included by gconfig.hpp only when _WIN32 is defined.",
+      "external": true
+    },
+    {
+      "id": "std",
+      "name": "C++ standard library",
+      "responsibility": "std::string, std::wstring and std::vector, with <stddef.h> and <time.h>.",
+      "external": true
+    },
+    {
+      "id": "rogue-wave",
+      "name": "Rogue Wave strings (RWCString, RWWString)",
+      "responsibility": "Foreign string classes GString converts from and to; declared in gconfig.hpp, never included.",
+      "external": true
+    },
+    {
+      "id": "mfc",
+      "name": "MFC (CString)",
+      "responsibility": "A foreign string class GString converts from and to; declared in gconfig.hpp, never included.",
+      "external": true
+    },
+    {
+      "id": "com",
+      "name": "COM string wrappers (_bstr_t, CComBSTR)",
+      "responsibility": "The compiler's and ATL's BSTR wrappers, which GString can be made from; declared in gconfig.hpp, never included.",
+      "external": true
+    }
+  ],
+  "relationships": [
+    {
+      "from": "gstring",
+      "to": "all",
+      "kind": "contains",
+      "description": "The umbrella header."
+    },
+    {
+      "from": "gstring",
+      "to": "config",
+      "kind": "contains",
+      "description": "The platform and types."
+    },
+    {
+      "from": "gstring",
+      "to": "encoding",
+      "kind": "contains",
+      "description": "The encodings."
+    },
+    {
+      "from": "gstring",
+      "to": "fwd",
+      "kind": "contains",
+      "description": "The forward declarations."
+    },
+    {
+      "from": "gstring",
+      "to": "payload",
+      "kind": "contains",
+      "description": "The payload and the body."
+    },
+    {
+      "from": "gstring",
+      "to": "format",
+      "kind": "contains",
+      "description": "Format arguments."
+    },
+    {
+      "from": "gstring",
+      "to": "string",
+      "kind": "contains",
+      "description": "GString."
+    },
+    {
+      "from": "gstring",
+      "to": "spot",
+      "kind": "contains",
+      "description": "GSpot."
+    },
+    {
+      "from": "gstring",
+      "to": "substring",
+      "kind": "contains",
+      "description": "GSubString."
+    },
+    {
+      "from": "gstring",
+      "to": "stringlist",
+      "kind": "contains",
+      "description": "GStringList."
+    },
+    {
+      "from": "gstring",
+      "to": "tokeniser",
+      "kind": "contains",
+      "description": "GTokeniser."
+    },
+    {
+      "from": "gstring",
+      "to": "regex",
+      "kind": "contains",
+      "description": "GRegularExpression and GMatch."
+    },
+    {
+      "from": "all",
+      "to": "config",
+      "kind": "depends-on",
+      "description": "Includes it first."
+    },
+    {
+      "from": "all",
+      "to": "encoding",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "fwd",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "payload",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "format",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "string",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "spot",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "substring",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "stringlist",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "tokeniser",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "all",
+      "to": "regex",
+      "kind": "depends-on",
+      "description": "Includes it last."
+    },
+    {
+      "from": "config",
+      "to": "windows",
+      "kind": "depends-on",
+      "description": "Includes windows.h and oleauto.h when _WIN32 is defined; otherwise typedefs OLECHAR and BSTR itself."
+    },
+    {
+      "from": "config",
+      "to": "std",
+      "kind": "depends-on",
+      "description": "Includes <stddef.h>."
+    },
+    {
+      "from": "config",
+      "to": "rogue-wave",
+      "kind": "depends-on",
+      "description": "Forward-declares RWCString and RWWString."
+    },
+    {
+      "from": "config",
+      "to": "mfc",
+      "kind": "depends-on",
+      "description": "Forward-declares CString."
+    },
+    {
+      "from": "config",
+      "to": "com",
+      "kind": "depends-on",
+      "description": "Forward-declares _bstr_t and CComBSTR."
+    },
+    {
+      "from": "encoding",
+      "to": "config",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "fwd",
+      "to": "std",
+      "kind": "depends-on",
+      "description": "Includes <vector> for GStrings and GSubStrings."
+    },
+    {
+      "from": "payload",
+      "to": "config",
+      "kind": "depends-on",
+      "description": "Includes it, for GSTRING_API and the basic types."
+    },
+    {
+      "from": "payload",
+      "to": "encoding",
+      "kind": "depends-on",
+      "description": "Includes it; a payload records its encoding and code page."
+    },
+    {
+      "from": "payload",
+      "to": "fwd",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "format",
+      "to": "config",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "format",
+      "to": "fwd",
+      "kind": "depends-on",
+      "description": "Includes it; a Text argument may point at a GString."
+    },
+    {
+      "from": "string",
+      "to": "config",
+      "kind": "depends-on",
+      "description": "Includes it."
+    },
+    {
+      "from": "string",
+      "to": "encoding",
+      "kind": "depends-on",
+      "description": "Includes it; every narrow constructor, length and conversion names an encoding."
+    },
+    {
+      "from": "string",
+      "to": "fwd",
+      "kind": "depends-on",
+      "description": "Includes it, for the classes it returns and takes."
+    },
+    {
+      "from": "string",
+      "to": "format",
+      "kind": "depends-on",
+      "description": "Includes it; Format takes GFormatArgs."
+    },
+    {
+      "from": "string",
+      "to": "std",
+      "kind": "depends-on",
+      "description": "Includes <string> and <time.h>; converts from and to std::string and std::wstring, and FromDate takes a struct tm."
+    },
+    {
+      "from": "string",
+      "to": "payload",
+      "kind": "depends-on",
+      "description": "Holds a GBody*, declared in gfwd.hpp and defined in gpayload.hpp; its comments defer to GSurvivor for who wins a comparison."
+    },
+    {
+      "from": "string",
+      "to": "spot",
+      "kind": "depends-on",
+      "description": "Find returns, and Mid, Between, Insert and Splice take, a GSpot; Begin and End make one."
+    },
+    {
+      "from": "string",
+      "to": "substring",
+      "kind": "depends-on",
+      "description": "Every piece it takes is a GSubString, and it can be made from one."
+    },
+    {
+      "from": "string",
+      "to": "stringlist",
+      "kind": "depends-on",
+      "description": "A friend; operator+ is declared to build a GStringList inside the result."
+    },
+    {
+      "from": "string",
+      "to": "regex",
+      "kind": "depends-on",
+      "description": "Contains, Find, Replace and Split take a GRegularExpression."
+    },
+    {
+      "from": "string",
+      "to": "rogue-wave",
+      "kind": "depends-on",
+      "description": "Constructors from RWCString and RWWString, ToRogueWaveString and ToRogueWaveWString."
+    },
+    {
+      "from": "string",
+      "to": "mfc",
+      "kind": "depends-on",
+      "description": "A constructor from CString, and ToCString."
+    },
+    {
+      "from": "string",
+      "to": "com",
+      "kind": "depends-on",
+      "description": "Constructors from _bstr_t and CComBSTR."
+    },
+    {
+      "from": "string",
+      "to": "windows",
+      "kind": "depends-on",
+      "description": "FromBstr, AdoptBstr and ToBstr take and return a BSTR, to be freed with SysFreeString."
+    },
+    {
+      "from": "spot",
+      "to": "string",
+      "kind": "depends-on",
+      "description": "Includes gstring.hpp, for GString::Step."
+    },
+    {
+      "from": "spot",
+      "to": "payload",
+      "kind": "depends-on",
+      "description": "Holds the GBody it walks and the generation it last saw."
+    },
+    {
+      "from": "substring",
+      "to": "string",
+      "kind": "depends-on",
+      "description": "Includes gstring.hpp; holds the original GString."
+    },
+    {
+      "from": "substring",
+      "to": "spot",
+      "kind": "depends-on",
+      "description": "Includes gspot.hpp; its ends are two GSpots."
+    },
+    {
+      "from": "stringlist",
+      "to": "string",
+      "kind": "depends-on",
+      "description": "Includes gstring.hpp; its pieces are GStrings."
+    },
+    {
+      "from": "stringlist",
+      "to": "payload",
+      "kind": "depends-on",
+      "description": "Flatten returns a GPayload*."
+    },
+    {
+      "from": "stringlist",
+      "to": "std",
+      "kind": "depends-on",
+      "description": "Includes <vector>."
+    },
+    {
+      "from": "tokeniser",
+      "to": "string",
+      "kind": "depends-on",
+      "description": "Includes gstring.hpp; holds the text it splits."
+    },
+    {
+      "from": "tokeniser",
+      "to": "substring",
+      "kind": "depends-on",
+      "description": "Includes gsubstring.hpp; every token is a GSubString."
+    },
+    {
+      "from": "tokeniser",
+      "to": "regex",
+      "kind": "depends-on",
+      "description": "One overload splits at a GRegularExpression, named through gfwd.hpp."
+    },
+    {
+      "from": "regex",
+      "to": "string",
+      "kind": "depends-on",
+      "description": "Includes gstring.hpp; the pattern and the subjects are GStrings."
+    },
+    {
+      "from": "regex",
+      "to": "substring",
+      "kind": "depends-on",
+      "description": "Includes gsubstring.hpp; a match's groups are GSubStrings."
+    },
+    {
+      "from": "regex",
+      "to": "std",
+      "kind": "depends-on",
+      "description": "Includes <vector>, for GMatches."
+    }
+  ]
+}

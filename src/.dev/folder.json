@@ -1,0 +1,30 @@
+{
+  "$schema": "../../Meta/Agents/Knowledge/schemas/folder.schema.json",
+  "kind": "folder",
+  "title": "Source",
+  "folder": "src",
+  "entities": [
+    {
+      "id": "folder",
+      "title": "Source",
+      "summary": "The repository's code: the reconstructed GString headers, and nothing else.",
+      "purpose": "The include root for the headers: code includes them as \"gstring/all.hpp\" with -Isrc, as the syntax check does.",
+      "boundaries": [
+        "There is no build file, no .cpp file and no test here; the only check is the syntax check described in src/gstring."
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "Checking them"
+        }
+      ],
+      "links": [
+        {
+          "path": "src/gstring/.dev/folder.json",
+          "label": "GString, reconstructed"
+        }
+      ]
+    }
+  ]
+}

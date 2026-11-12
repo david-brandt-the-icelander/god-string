@@ -1,0 +1,48 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/limitations.schema.json",
+  "kind": "limitations",
+  "title": "Where the parts need help outside Markdown",
+  "folder": "articles/the-great-string-war",
+  "entities": [
+    {
+      "id": "tables",
+      "title": "Tables in parts 5 and 6",
+      "summary": "Part 5's counts for the flag of England and its glossary of terms, and part 6's table of comparison against collation, are Markdown tables.",
+      "impact": "On a platform that strips tables they lose their meaning.",
+      "workaround": "Rewrite them as lists for that platform.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/05-the-myth-of-the-wide-character.md",
+          "symbol": "X marks the spot"
+        },
+        {
+          "path": "articles/the-great-string-war/06-equal-equivalent-and-in-order.md",
+          "symbol": "Ordering and collation"
+        }
+      ],
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (Plain-text fallbacks), articles/the-great-string-war, at c591f71"
+      }
+    },
+    {
+      "id": "y-code-blocks",
+      "title": "Y code blocks in part 11",
+      "summary": "Part 11's code samples are fenced with a y language tag.",
+      "impact": "Syntax highlighters do not know the tag.",
+      "workaround": "Plain fenced blocks are fine.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+          "symbol": "What Y kept"
+        }
+      ],
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (Plain-text fallbacks), articles/the-great-string-war, at c591f71"
+      }
+    }
+  ]
+}
