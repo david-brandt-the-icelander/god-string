@@ -1,0 +1,84 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/references.schema.json",
+  "kind": "references",
+  "title": "What The Great String War relies on",
+  "folder": "articles/the-great-string-war",
+  "entities": [
+    {
+      "id": "y-design-documents",
+      "title": "Y's design documents",
+      "summary": "The strings section of the Y proposal, the string ideas of earlier iterations, the constraint language's strings, and the Rust implementation of y-string, all in the padresmurfa/y repository.",
+      "relevance": "Part 11 says what Y kept from GString, and parts 1 and 10 what Y does differently, from these documents as they stood in November 2026.",
+      "url": "https://github.com/padresmurfa/y",
+      "details": "- `proposal/Y-proposal.md`, § 3.3, *Strings: the y-string library*\n- `proposal/Y-idea-harvest.md`, § 3.1, § 3.2, § 3.5 and § 3.7\n- `proposal/constraint-language.md`\n- `examples/y-string/`\n\nThe repository is private; the paths were checked to exist on its main branch on 2026-11-12.",
+      "links": [
+        {
+          "url": "https://github.com/padresmurfa/y/blob/main/proposal/Y-proposal.md",
+          "label": "Y proposal"
+        },
+        {
+          "url": "https://github.com/padresmurfa/y/blob/main/proposal/Y-idea-harvest.md",
+          "label": "Y idea harvest"
+        },
+        {
+          "url": "https://github.com/padresmurfa/y/blob/main/proposal/constraint-language.md",
+          "label": "Constraint language"
+        },
+        {
+          "url": "https://github.com/padresmurfa/y/tree/main/examples/y-string",
+          "label": "y-string"
+        }
+      ],
+      "evidenceStatus": "documented",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "Sources"
+        },
+        {
+          "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+          "symbol": "What Y kept"
+        }
+      ]
+    },
+    {
+      "id": "voca",
+      "title": "Voca",
+      "summary": "A JavaScript string library, one of the libraries whose union part 11's catalogue of methods was taken to be.",
+      "relevance": "Part 11's catalogue, and the verdicts in parts 2 and 3 that follow from it, assume GString had what Voca and the string libraries the series names have.",
+      "url": "https://github.com/panzerdp/voca",
+      "evidenceStatus": "documented",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "Sources"
+        }
+      ],
+      "relationships": [
+        {
+          "relation": "relates-to",
+          "path": "articles/the-great-string-war/.dev/decisions.json",
+          "entityId": "method-catalogue"
+        }
+      ]
+    },
+    {
+      "id": "general-knowledge",
+      "title": "General knowledge, checked in 2026",
+      "summary": "Everything in the parts that is not memory, with its sources linked in the part where it is used.",
+      "relevance": "Each part's opening note says which of its contents are general knowledge; the links in the part are its sources.",
+      "details": "- The falsehood lists and their authors (parts 2 and 3).\n- The string types of the day and their quirks: BSTR's length prefix and null as empty, TCHAR, CString's GetBuffer, strstream's freeze, Java's modified UTF-8 (part 4).\n- The history of UCS-2, UCS-4, UTF-16 and UTF-8, and the byte counts of the flag of England, the family emoji and the kiss (part 5).\n- Normalisation, comparison and collation; the glibc 2.28 and PostgreSQL episode; strcoll and strxfrm (part 6).\n- Shlemiel the painter, ropes, V8's cons strings, SpiderMonkey's ropes, javac and JEP 280, .NET's chunked StringBuilder, Python's join, Erlang's iolists and writev (part 7).\n- Java's 2012 substring change, Go, Swift's Substring, string_view and Rust's &str (part 8).\n- Hash flooding in 2011, SipHash and JEP 180; Herb Sutter's 1999 measurements and the C++11 and GCC 2015 ABI change; the small string optimisation; JEP 254 and PEP 393 (part 9).\n- Thompson's 1968 construction, Russ Cox's 2007 article, the Stack Overflow 2016 and Cloudflare 2019 outages, RE2, Rust's regex crate and UTS #18 (part 10).",
+      "evidenceStatus": "documented",
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (What is memory and what is not), articles/the-great-string-war, at c591f71"
+      },
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "Sources"
+        }
+      ]
+    }
+  ]
+}

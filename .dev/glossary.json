@@ -1,0 +1,92 @@
+{
+  "$schema": "../Meta/Agents/Knowledge/schemas/glossary.schema.json",
+  "kind": "glossary",
+  "title": "Terms used across god-string",
+  "folder": ".",
+  "entities": [
+    {
+      "id": "gstring",
+      "title": "GString",
+      "summary": "The string class the author wrote at OZ between 1998 and 2002 to end the Great String War; first called the God-String, which quickly got shortened. Its source is gone.",
+      "aliases": [
+        "God-String",
+        "god-string"
+      ],
+      "notToBeConfusedWith": [
+        "GLib's GString, which existed at the same time and has nothing to do with it",
+        "The headers in src/gstring, which are a 2026 reconstruction of what it might have looked like"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The name"
+        },
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "GString, reconstructed"
+        }
+      ]
+    },
+    {
+      "id": "great-string-war",
+      "title": "The Great String War",
+      "summary": "The argument in OZ's large development team over which string class was best, with no consensus, no policy and no authority to settle it; GString ended it by making it not matter. Also the title of the series.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The war"
+        }
+      ]
+    },
+    {
+      "id": "faction",
+      "title": "Faction",
+      "summary": "A group of programmers at OZ loyal to one string class (Rogue Wave's RWCString, MFC's CString, std::string, the C library, Java's String or Perl), whose favourite methods GString had to offer to win its buy-in.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "What a GString was"
+        },
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString"
+        }
+      ]
+    },
+    {
+      "id": "oz",
+      "title": "OZ",
+      "summary": "Where GString was written, on iPulse, between 1998 and 2002.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The Great String War"
+        },
+        {
+          "path": "src/gstring/gconfig.hpp",
+          "symbol": "GSTRING_GCONFIG_HPP"
+        }
+      ]
+    },
+    {
+      "id": "ipulse",
+      "title": "iPulse",
+      "summary": "The system at OZ whose RPC layer, which also did most of its code generation, needed GString.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "README.md",
+          "symbol": "god-string"
+        },
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The Great String War"
+        }
+      ]
+    }
+  ]
+}

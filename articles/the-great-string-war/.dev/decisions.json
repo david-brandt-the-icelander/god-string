@@ -1,0 +1,339 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/decisions.schema.json",
+  "kind": "decisions",
+  "title": "Decisions waiting on the author of The Great String War",
+  "folder": "articles/the-great-string-war",
+  "entities": [
+    {
+      "id": "method-catalogue",
+      "title": "Is part 11's catalogue of methods right?",
+      "summary": "The catalogue in part 11, and the verdicts in parts 2 and 3 that follow from it, are assumed rather than remembered.",
+      "status": "open",
+      "context": "The author no longer remembers GString's exact method names. Part 11's catalogue was taken as the union of the string libraries the series names plus Voca, with names that say what each method did, and the verdicts on each falsehood in parts 2 and 3 follow from it. gstring.hpp in src/gstring follows the same catalogue.",
+      "options": [
+        {
+          "title": "Confirm it",
+          "consequences": "The README's \"Assumed, for the author to check\" can go, and the headers stand as they are."
+        },
+        {
+          "title": "Correct it",
+          "consequences": "Part 11, the verdicts in parts 2 and 3, the site's copies and gstring.hpp change together."
+        }
+      ],
+      "waitingOn": "The author",
+      "blocks": [
+        {
+          "path": "src/gstring/.dev/class-diagram.json",
+          "description": "GString's members follow the catalogue."
+        }
+      ],
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (What is memory and what is not) and README.md (Sources), articles/the-great-string-war, at c591f71"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "Sources"
+        },
+        {
+          "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+          "symbol": "The catalogue"
+        },
+        {
+          "path": "src/gstring/gstring.hpp",
+          "symbol": "GString"
+        }
+      ]
+    },
+    {
+      "id": "inferred-statements",
+      "title": "Two statements about GString that are inferred",
+      "summary": "Part 7 says a = b + c + d + e + \"f\" + g built a six-piece list and copied no characters; part 8 says a GSubString held a reference to the original's payload, so the original couldn't be freed under it. Neither is remembered.",
+      "status": "open",
+      "context": "Both follow from how GString worked, as remembered, but are not themselves memory. The headers repeat them: gstringlist.hpp's comment says a = b + c + d + e + f builds a list of five pieces and copies no characters, and gsubstring.hpp's says a GSubString holds a reference to the original's body.",
+      "options": [
+        {
+          "title": "Confirm them",
+          "consequences": "They stand in the parts and in the headers."
+        },
+        {
+          "title": "Mark them as inferred, or remove them",
+          "consequences": "Parts 7 and 8, the site's copies and the comments in gstringlist.hpp and gsubstring.hpp change."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (What is memory and what is not), articles/the-great-string-war, at c591f71"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/07-shlemiel-and-the-string-list.md",
+          "symbol": "The GStringList"
+        },
+        {
+          "path": "articles/the-great-string-war/08-borrowed-not-copied.md",
+          "symbol": "The two questions"
+        },
+        {
+          "path": "src/gstring/gstringlist.hpp",
+          "symbol": "GStringList"
+        },
+        {
+          "path": "src/gstring/gsubstring.hpp",
+          "symbol": "GSubString"
+        }
+      ]
+    },
+    {
+      "id": "material-not-from-memory",
+      "title": "Look over the material that is not the author's",
+      "summary": "Several sections, and five titles, are general knowledge or framing written while drafting rather than the author's own memory, and are worth a look.",
+      "status": "open",
+      "context": "Part 4: the quirks of each string type, and the paragraph on single-block allocations being the pattern GString chose. Part 7: the Shlemiel reference, the section on ropes and later languages, and the closing list of advice. Part 8: the two questions, the comparisons with Java, Go, Swift, C++ and Rust, and the closing list of advice. Part 9: interning, the history of hash flooding, why copy-on-write fell, the small string optimisation, compact strings and the closing \"Measure\" section. Part 10: automata versus backtracking, the two outages, and \"What Y does\". The titles \"Shlemiel and the string list\", \"Borrowed, not copied\", \"Tricks of the string trade\", \"Crazier than Cocaine Bear\" and \"Every method you could want\".",
+      "options": [
+        {
+          "title": "Keep them",
+          "consequences": "Nothing changes."
+        },
+        {
+          "title": "Rewrite or cut some",
+          "consequences": "The parts here and the site's copies change."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (Material that is not David's, worth a look), articles/the-great-string-war, at c591f71"
+      },
+      "evidenceStatus": "documented"
+    },
+    {
+      "id": "profanity",
+      "title": "Keep the mild profanity?",
+      "summary": "\"screw up\" and \"sucked\" in part 7, \"gave a damn\" in part 4 and \"goes to hell\" in part 5: mild, and all the author's.",
+      "status": "open",
+      "context": "The notes left it as the author's call. The series was published on 2026-11-07 with all four.",
+      "options": [
+        {
+          "title": "Keep them",
+          "consequences": "Nothing changes."
+        },
+        {
+          "title": "Soften them",
+          "consequences": "Parts 4, 5 and 7 change here and on the site."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (David's call), articles/the-great-string-war, at c591f71"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/04-every-string-in-the-building.md",
+          "symbol": "Every string in the building"
+        },
+        {
+          "path": "articles/the-great-string-war/05-the-myth-of-the-wide-character.md",
+          "symbol": "X marks the spot"
+        },
+        {
+          "path": "articles/the-great-string-war/07-shlemiel-and-the-string-list.md",
+          "symbol": "Shlemiel and the string list"
+        }
+      ]
+    },
+    {
+      "id": "gspot-remark",
+      "title": "Keep the manager's remark about the GSpot?",
+      "summary": "Part 5 quotes what a manager said about the GSpot; it names no one, but anyone who was at OZ could tell who said it.",
+      "status": "open",
+      "context": "The notes left it as the author's call. The series was published on 2026-11-07 with the remark.",
+      "options": [
+        {
+          "title": "Keep it",
+          "consequences": "Nothing changes."
+        },
+        {
+          "title": "Cut or blur it",
+          "consequences": "Part 5 changes here and on the site, and gspot.hpp's comment pointing to it changes too."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (David's call), articles/the-great-string-war, at c591f71"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/05-the-myth-of-the-wide-character.md",
+          "symbol": "X marks the spot"
+        },
+        {
+          "path": "src/gstring/gspot.hpp",
+          "symbol": "GSpot"
+        }
+      ]
+    },
+    {
+      "id": "apple-twice",
+      "title": "Say Apple was written off only once?",
+      "summary": "\"Apple was dead in those days, or so we all thought\" in part 2 and \"Apple, which we had all written off, came back\" in part 6 say the same thing twice.",
+      "status": "open",
+      "context": "The notes left it as the author's call. The series was published on 2026-11-07 with both.",
+      "options": [
+        {
+          "title": "Keep both",
+          "consequences": "Each part stands alone."
+        },
+        {
+          "title": "Keep one",
+          "consequences": "Part 2 or part 6 changes here and on the site."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (David's call), articles/the-great-string-war, at c591f71"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/02-falsehoods-programmers-believe-about-strings.md",
+          "symbol": "Falsehoods programmers believe about strings"
+        },
+        {
+          "path": "articles/the-great-string-war/06-equal-equivalent-and-in-order.md",
+          "symbol": "Normalisation"
+        }
+      ]
+    },
+    {
+      "id": "repeated-passages",
+      "title": "Keep the passages repeated across parts?",
+      "summary": "Parts 1 and 9 both carry the paragraph on conversion collapsing a shared payload, and parts 1 and 10 both carry the sentence on Perl's regular expressions.",
+      "status": "open",
+      "context": "The repetition is deliberate, so that each part stands alone, but the notes marked it as worth a glance.",
+      "options": [
+        {
+          "title": "Keep them",
+          "consequences": "Each part stands alone."
+        },
+        {
+          "title": "Keep each passage once, and refer to it by title elsewhere",
+          "consequences": "Parts 9 or 10 change here and on the site."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "document",
+        "reference": "notes.md (David's call), articles/the-great-string-war, at c591f71"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "Inside a GString"
+        },
+        {
+          "path": "articles/the-great-string-war/09-tricks-of-the-string-trade.md",
+          "symbol": "Convert once, compare once, then share"
+        },
+        {
+          "path": "articles/the-great-string-war/10-crazier-than-cocaine-bear.md",
+          "symbol": "Crazier than Cocaine Bear"
+        }
+      ]
+    },
+    {
+      "id": "working-copies",
+      "title": "What are the working copies now that the series is published?",
+      "summary": "The site's copies were edited after the move and after publishing, so the working copies here no longer differ from them only by the changes the move made.",
+      "status": "open",
+      "context": "The README calls the parts here the working copies, and the site's the versions in the site's format. The move to icelander.net on 2026-11-06 made a known set of changes (below). Since then, icelander.net published the series on 2026-11-07 and changed its copies again in its own repository: review edits on 2026-11-07, removing `written` from the front matter and a pass across all its articles on 2026-11-08. Part 1's \"There was no consensus. There was no policy. There was no authority that could cut the knot.\", for example, reads \"There was no consensus, no policy, and no authority that could cut the knot.\" on the site. None of those edits came back here.",
+      "details": "What the move to icelander.net changed, as the notes recorded it on 2026-11-06:\n\n- New front matter: train, series and part, `thought: 1998` with `thought_until: 2002`, `written: 2026-11-06`, a summary per part written for publishing, and an empty `published`.\n- The date line and the rule under it dropped from each body, because the page prints both dates itself.\n- The opening note in each part dropped, as the equivalent notes were from *The lowest common denominator* on 2026-11-03.\n- Subtitles lose their trailing full stop; part 7's loses its backticks, because the page prints the subtitle as plain text.\n- US spelling, per the site's style guide: normalization, localization (also in part 3's title, slug and file name), favorite, optimization, catalog, labor, humor, honor, flavor, unlabeled, capitalized, tokenize, serialization, synchronizing, globalization, internationalization. Links to Unicode's own pages unaffected.\n- \"Spoiler:\" in part 5 removed, per the style guide.\n- References between the parts, italic titles here, made relative links to the Markdown files, so the build checks them and readers can follow them.\n- The series registered in `site/series.yml`.\n- Nothing else in the text touched.",
+      "options": [
+        {
+          "title": "Bring the site's edits back here",
+          "consequences": "The working copies match the published text again, apart from the move's changes, and stay the place to edit."
+        },
+        {
+          "title": "Keep them as the text before publishing",
+          "consequences": "The README says so; later edits are made on the site only."
+        },
+        {
+          "title": "Remove them",
+          "consequences": "The site's copies are the only text; this folder keeps its README and .dev, and part 1's link to the headers is unaffected."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "review",
+        "by": "Coding agent",
+        "date": "2026-11-12",
+        "description": "Found while moving notes.md into .dev files: the notes' publishing steps had already been carried out."
+      },
+      "evidenceStatus": "documented",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        },
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The Great String War"
+        }
+      ],
+      "links": [
+        {
+          "url": "https://github.com/david-brandt-the-icelander/icelander.net/commits/main/articles/the_great_string_war",
+          "label": "The site's copies' history"
+        }
+      ]
+    },
+    {
+      "id": "opening-notes",
+      "title": "Should the published parts carry the memory notes?",
+      "summary": "The README says the opening notes should stay when the parts are published; the move dropped them from the site's copies.",
+      "status": "open",
+      "context": "Every working copy opens with a note saying what in it is memory and what is not, and the README says the notes should stay when the parts are published. The notes recorded that the move dropped them, as the equivalent notes had been dropped from The lowest common denominator on 2026-11-03, and the published copies do not have them.",
+      "options": [
+        {
+          "title": "Restore them on the site",
+          "consequences": "Readers on icelander.net see which parts are memory."
+        },
+        {
+          "title": "Leave them out on the site",
+          "consequences": "The README's sentence, and the requirement memory-note, change to say they are for the working copies only."
+        }
+      ],
+      "waitingOn": "The author",
+      "origin": {
+        "kind": "review",
+        "by": "Coding agent",
+        "date": "2026-11-12",
+        "description": "The README and the notes disagreed."
+      },
+      "evidenceStatus": "documented",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        }
+      ],
+      "relationships": [
+        {
+          "relation": "relates-to",
+          "path": "articles/the-great-string-war/.dev/requirements.json",
+          "entityId": "memory-note"
+        }
+      ]
+    }
+  ]
+}

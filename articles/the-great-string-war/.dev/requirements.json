@@ -1,0 +1,72 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/requirements.schema.json",
+  "kind": "requirements",
+  "title": "What every part of The Great String War carries",
+  "folder": "articles/the-great-string-war",
+  "entities": [
+    {
+      "id": "memory-note",
+      "title": "Say what is memory and what is not",
+      "summary": "Every part carries the date line and opens with a short note saying what in it is memory and what is not.",
+      "statement": "Each part has, under its title and italic subtitle, the date line \"Built at OZ, 1998–2002 · Written November 2026\" and a rule, then a quoted note \"Part N of 11 in *The Great String War*\" saying which of its contents are memory and which are general knowledge, checked in 2026. The README says the notes should stay when the parts are published.",
+      "rationale": "The story is told from memory a quarter of a century later, beside general knowledge checked in 2026; the reader is told which is which.",
+      "acceptanceCriteria": [
+        "Each of the eleven working copies has the date line and the rule under its subtitle.",
+        "Each opens with the quoted note naming its part number of 11 and what is memory."
+      ],
+      "origin": {
+        "kind": "document",
+        "by": "The author",
+        "reference": "articles/the-great-string-war/README.md"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        },
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "The Great String War"
+        },
+        {
+          "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+          "symbol": "Every method you could want"
+        }
+      ],
+      "relationships": [
+        {
+          "relation": "relates-to",
+          "path": "articles/the-great-string-war/.dev/decisions.json",
+          "entityId": "opening-notes",
+          "description": "The site's copies dropped the notes."
+        }
+      ]
+    },
+    {
+      "id": "references-by-title",
+      "title": "Refer to other parts by title",
+      "summary": "Parts refer to each other by title, in italics, so that the references read the same here and on the site.",
+      "statement": "A reference from one part to another is the other part's title in italics, such as *Tricks of the string trade*, not a file name or a part number.",
+      "acceptanceCriteria": [
+        "No working copy links to another part's file; each names it by its title in italics."
+      ],
+      "origin": {
+        "kind": "document",
+        "by": "The author",
+        "reference": "articles/the-great-string-war/README.md"
+      },
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        },
+        {
+          "path": "articles/the-great-string-war/01-the-great-string-war.md",
+          "symbol": "Inside a GString"
+        }
+      ]
+    }
+  ]
+}

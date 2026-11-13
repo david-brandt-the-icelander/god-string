@@ -1,0 +1,1074 @@
+{
+  "$schema": "../../../Meta/Agents/Skills/describe-class-diagram/schema.json",
+  "kind": "class",
+  "title": "GString classes",
+  "folder": "src/gstring",
+  "description": "Every class, struct, wrapped enum and typedef the reconstructed headers declare, with their declared members. Nothing is implemented: the members are declarations, and inline bodies are left out. There is no inheritance. Enums are wrapped in structs (GEncoding::Type and the like), and private members are marked. Two free functions are declared beside the classes: operator+(const GString&, const GString&), a friend of GString, and GSurvivor(const GPayload*, const GPayload*), the rule for which payload two equal strings keep. GByte and GUnit16 are declared in gconfig.hpp and used nowhere else. The foreign string classes are forward-declared in gconfig.hpp, never included.",
+  "sources": [
+    {
+      "path": "src/gstring/gstring.hpp",
+      "symbol": "GString"
+    },
+    {
+      "path": "src/gstring/gpayload.hpp",
+      "symbol": "GBody"
+    },
+    {
+      "path": "src/gstring/gpayload.hpp",
+      "symbol": "GSurvivor"
+    },
+    {
+      "path": "src/gstring/gspot.hpp",
+      "symbol": "GSpot"
+    },
+    {
+      "path": "src/gstring/gsubstring.hpp",
+      "symbol": "GSubString"
+    },
+    {
+      "path": "src/gstring/gstringlist.hpp",
+      "symbol": "GStringList"
+    },
+    {
+      "path": "src/gstring/gtokeniser.hpp",
+      "symbol": "GTokeniser"
+    },
+    {
+      "path": "src/gstring/gregularexpression.hpp",
+      "symbol": "GRegularExpression"
+    },
+    {
+      "path": "src/gstring/gformat.hpp",
+      "symbol": "GFormatArg"
+    },
+    {
+      "path": "src/gstring/gencoding.hpp",
+      "symbol": "GEncoding"
+    },
+    {
+      "path": "src/gstring/gfwd.hpp",
+      "symbol": "GStrings"
+    },
+    {
+      "path": "src/gstring/gconfig.hpp",
+      "symbol": "GLength"
+    }
+  ],
+  "types": [
+    {
+      "id": "GString",
+      "name": "GString",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gstring.hpp"
+      ],
+      "members": [
+        "GString()",
+        "GString(const GString& other)",
+        "~GString()",
+        "GString(const char* text)",
+        "GString(const char* text, GEncoding::Type encoding, GCodePage codePage = 0)",
+        "GString(const char* text, GLength bytes, GEncoding::Type encoding, GCodePage codePage = 0)",
+        "GString(const wchar_t* text)",
+        "GString(const wchar_t* text, GLength units)",
+        "GString(const GCodePoint* text, GLength codePoints)",
+        "GString(const std::string& text, GEncoding::Type encoding)",
+        "GString(const std::wstring& text)",
+        "GString(const RWCString& text, GEncoding::Type encoding)",
+        "GString(const RWWString& text)",
+        "GString(const CString& text)",
+        "GString(const _bstr_t& text)",
+        "GString(const CComBSTR& text)",
+        "GString(const GSubString& piece)",
+        "GString& operator=(const GString& other)",
+        "static GString Literal(const char* text, GEncoding::Type encoding = GEncoding::Ascii)",
+        "static GString Literal(const wchar_t* text)",
+        "static GString Borrow(const char* text, GEncoding::Type encoding, GCodePage codePage = 0)",
+        "static GString Borrow(const wchar_t* text)",
+        "static GString Borrow(const std::string& text, GEncoding::Type encoding)",
+        "static GString Borrow(const std::wstring& text)",
+        "static GString FromBstr(BSTR text)",
+        "static GString AdoptBstr(BSTR text)",
+        "static GString FromNumber(long value)",
+        "static GString FromNumber(unsigned long value)",
+        "static GString FromNumber(double value, int decimals = -1)",
+        "static GString FromBoolean(bool value)",
+        "static GString FromDate(const struct tm& date)",
+        "static GString FromDate(const struct tm& date, const GString& pattern)",
+        "static GString Repeat(const GString& text, GLength times)",
+        "static GString Join(const GStrings& pieces, const GString& separator)",
+        "static GString Join(const GSubStrings& pieces, const GString& separator)",
+        "static GString Format(const GString& pattern)",
+        "static GString Format(const GString& pattern, const GFormatArg& a1)",
+        "static GString Format(const GString& pattern, const GFormatArg& a1, const GFormatArg& a2)",
+        "static GString Format(const GString& pattern, const GFormatArg& a1, const GFormatArg& a2, const GFormatArg& a3)",
+        "static GString Format(const GString& pattern, const GFormatArg& a1, const GFormatArg& a2, const GFormatArg& a3, const GFormatArg& a4)",
+        "static GString Format(const GString& pattern, const GFormatArg& a1, const GFormatArg& a2, const GFormatArg& a3, const GFormatArg& a4, const GFormatArg& a5)",
+        "static GString FromResource(unsigned int id)",
+        "bool IsEmpty() const",
+        "bool IsBlank() const",
+        "GLength LengthInCharacters() const",
+        "GLength LengthInCodeUnits(GEncoding::Type encoding) const",
+        "GLength LengthInBytes(GEncoding::Type encoding) const",
+        "bool StartsWith(const GString& prefix) const",
+        "bool StartsWithIgnoringCase(const GString& prefix) const",
+        "bool EndsWith(const GString& suffix) const",
+        "bool EndsWithIgnoringCase(const GString& suffix) const",
+        "bool Contains(const GString& text) const",
+        "bool ContainsIgnoringCase(const GString& text) const",
+        "bool Contains(const GRegularExpression& pattern) const",
+        "GLength CountOf(const GString& text) const",
+        "GLength CountOfWords() const",
+        "bool IsAlphabetic() const",
+        "bool IsDigits() const",
+        "bool IsAlphanumeric() const",
+        "bool IsNumeric() const",
+        "bool IsUpperCase() const",
+        "bool IsLowerCase() const",
+        "bool IsAscii() const",
+        "GSpot Find(const GString& text) const",
+        "GSpot Find(const GString& text, const GSpot& from) const",
+        "GSpot FindIgnoringCase(const GString& text) const",
+        "GSpot FindLast(const GString& text) const",
+        "GSpot FindLast(const GString& text, const GSpot& before) const",
+        "GSpot Find(GCodePoint character) const",
+        "GSpot FindLast(GCodePoint character) const",
+        "GSpot FindOneOf(const GString& set) const",
+        "GSpot FindLastOneOf(const GString& set) const",
+        "GSpot FindFirstNotOf(const GString& set) const",
+        "GSpot FindLastNotOf(const GString& set) const",
+        "GSpot Find(const GRegularExpression& pattern) const",
+        "GSpot Find(const GRegularExpression& pattern, const GSpot& from) const",
+        "GSubString Left(GLength characters) const",
+        "GSubString Right(GLength characters) const",
+        "GSubString Mid(const GSpot& from) const",
+        "GSubString Mid(const GSpot& from, GLength characters) const",
+        "GSubString Between(const GSpot& from, const GSpot& to) const",
+        "GSubString First(GLength characters) const",
+        "GSubString Last(GLength characters) const",
+        "GSubString Before(const GString& separator) const",
+        "GSubString BeforeLast(const GString& separator) const",
+        "GSubString After(const GString& separator) const",
+        "GSubString AfterLast(const GString& separator) const",
+        "GSubString CharacterAt(const GSpot& at) const",
+        "GString& Append(const GString& text)",
+        "GString& Prepend(const GString& text)",
+        "GString& Insert(const GSpot& at, const GString& text)",
+        "GString& Replace(const GString& from, const GString& to)",
+        "GString& ReplaceFirst(const GString& from, const GString& to)",
+        "GString& ReplaceLast(const GString& from, const GString& to)",
+        "GString& Replace(const GRegularExpression& pattern, const GString& to)",
+        "GString& Remove(const GString& text)",
+        "GString& Splice(const GSpot& at, GLength characters, const GString& replacement)",
+        "GString& Repeat(GLength times)",
+        "GString& MakeReverse()",
+        "GString& PadLeft(GLength width, GCodePoint fill = ' ')",
+        "GString& PadRight(GLength width, GCodePoint fill = ' ')",
+        "GString& Centre(GLength width, GCodePoint fill = ' ')",
+        "GString& Trim()",
+        "GString& TrimLeft()",
+        "GString& TrimRight()",
+        "GString& Trim(const GString& set)",
+        "GString& TrimLeft(const GString& set)",
+        "GString& TrimRight(const GString& set)",
+        "GString& Truncate(GLength width, const GString& ellipsis = GString::Literal(\"...\"))",
+        "GString& Prune(GLength width, const GString& ellipsis = GString::Literal(\"...\"))",
+        "GString& WrapWords(GLength width, const GString& newline = GString::Literal(\"\\r\\n\"))",
+        "GString& Translate(const GString& from, const GString& to)",
+        "GString& MakeUpper()",
+        "GString& MakeLower()",
+        "GString& MakeSwappedCase()",
+        "GString& MakeCapitalised()",
+        "GString& MakeTitleCase()",
+        "GString& MakeCamelCase()",
+        "GString& MakePascalCase()",
+        "GString& MakeSnakeCase()",
+        "GString& MakeKebabCase()",
+        "GSubStrings Split(const GString& separator) const",
+        "GSubStrings Split(const GRegularExpression& separator) const",
+        "GSubStrings SplitWords() const",
+        "GSubStrings SplitCharacters() const",
+        "GSubStrings SplitLines() const",
+        "int Compare(const GString& other) const",
+        "int CompareIgnoringCase(const GString& other) const",
+        "int Collate(const GString& other) const",
+        "int CollateIgnoringCase(const GString& other) const",
+        "bool Equals(const GString& other) const",
+        "bool EqualsIgnoringCase(const GString& other) const",
+        "GHash Hash() const",
+        "GHash HashIgnoringCase() const",
+        "GString& EscapeHtml()",
+        "GString& UnescapeHtml()",
+        "GString& EscapeXml()",
+        "GString& UnescapeXml()",
+        "GString& EscapeForRegularExpression()",
+        "GString& EscapeForCSource()",
+        "GString& StripTags()",
+        "GString& StripByteOrderMark()",
+        "GString& StripAccents()",
+        "const char* AsCharPointer(GEncoding::Type encoding, GCodePage codePage = 0) const",
+        "const wchar_t* AsWideCharPointer() const",
+        "const std::string& AsStdString(GEncoding::Type encoding) const",
+        "const std::wstring& AsStdWString() const",
+        "std::string ToStdString(GEncoding::Type encoding) const",
+        "std::wstring ToStdWString() const",
+        "RWCString ToRogueWaveString(GEncoding::Type encoding) const",
+        "RWWString ToRogueWaveWString() const",
+        "CString ToCString() const",
+        "BSTR ToBstr() const",
+        "long ToLong(bool* ok = 0) const",
+        "unsigned long ToUnsignedLong(bool* ok = 0) const",
+        "double ToDouble(bool* ok = 0) const",
+        "bool ToBoolean(bool* ok = 0) const",
+        "GSpot Begin(Step::Type step = Step::ByCharacter) const",
+        "GSpot End(Step::Type step = Step::ByCharacter) const",
+        "GString& operator+=(const GString& text)",
+        "friend GSTRING_API GString operator+(const GString& left, const GString& right)",
+        "friend bool operator==(const GString& l, const GString& r)",
+        "friend bool operator!=(const GString& l, const GString& r)",
+        "friend bool operator< (const GString& l, const GString& r)",
+        "friend bool operator<=(const GString& l, const GString& r)",
+        "friend bool operator> (const GString& l, const GString& r)",
+        "friend bool operator>=(const GString& l, const GString& r)",
+        "private explicit GString(GBody* body)",
+        "private GBody* Body() const",
+        "private void MakeUnique()",
+        "private void Flatten() const",
+        "private void Convert(GEncoding::Type encoding, GCodePage codePage) const",
+        "private void ShareWith(const GString& equal) const",
+        "private mutable GBody* m_body"
+      ]
+    },
+    {
+      "id": "GString.Step",
+      "name": "GString::Step::Type",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gstring.hpp"
+      ],
+      "members": [
+        "ByCharacter",
+        "ByCodeUnit",
+        "ByByte"
+      ]
+    },
+    {
+      "id": "GSpot",
+      "name": "GSpot",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gspot.hpp"
+      ],
+      "members": [
+        "GSpot()",
+        "GSpot(const GSpot& other)",
+        "~GSpot()",
+        "GSpot& operator=(const GSpot& other)",
+        "GCodePoint operator*() const",
+        "GSpot& operator++()",
+        "GSpot operator++(int)",
+        "GSpot& operator--()",
+        "GSpot operator--(int)",
+        "GSpot& Advance(long steps)",
+        "bool IsStart() const",
+        "bool IsEnd() const",
+        "GLength CharacterIndex() const",
+        "GLength UnitOffset() const",
+        "GString::Step::Type Stepping() const",
+        "friend bool operator==(const GSpot& l, const GSpot& r)",
+        "friend bool operator!=(const GSpot& l, const GSpot& r)",
+        "friend bool operator< (const GSpot& l, const GSpot& r)",
+        "private GSpot(GBody* body, GLength unit, GLength character, GString::Step::Type step)",
+        "private bool Same(const GSpot& other) const",
+        "private bool Before(const GSpot& other) const",
+        "private void Resync() const",
+        "private GBody* m_body",
+        "private mutable unsigned long m_generation",
+        "private mutable GLength m_unit",
+        "private GLength m_character",
+        "private GString::Step::Type m_step"
+      ]
+    },
+    {
+      "id": "GSubString",
+      "name": "GSubString",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gsubstring.hpp"
+      ],
+      "members": [
+        "GSubString()",
+        "GSubString(const GSpot& from, const GSpot& to)",
+        "GString Detach() const",
+        "bool IsEmpty() const",
+        "GLength LengthInCharacters() const",
+        "GLength LengthInCodeUnits(GEncoding::Type encoding) const",
+        "GSpot Begin() const",
+        "GSpot End() const",
+        "const GString& Original() const",
+        "int Compare(const GString& other) const",
+        "int CompareIgnoringCase(const GString& other) const",
+        "bool Equals(const GString& other) const",
+        "bool EqualsIgnoringCase(const GString& other) const",
+        "GSubString Left(GLength characters) const",
+        "GSubString Right(GLength characters) const",
+        "GSubString Mid(GLength from, GLength characters) const",
+        "GSubString Trimmed() const",
+        "friend bool operator==(const GSubString& l, const GString& r)",
+        "friend bool operator!=(const GSubString& l, const GString& r)",
+        "private GString m_original",
+        "private GSpot m_from",
+        "private GSpot m_to"
+      ]
+    },
+    {
+      "id": "GStringList",
+      "name": "GStringList",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gstringlist.hpp"
+      ],
+      "members": [
+        "GStringList()",
+        "GStringList(const GString& left, const GString& right)",
+        "void Append(const GString& piece)",
+        "void Prepend(const GString& piece)",
+        "size_t PieceCount() const",
+        "const GString& Piece(size_t index) const",
+        "bool IsEmpty() const",
+        "GLength LengthInCharacters() const",
+        "GPayload* Flatten(GEncoding::Type encoding, GCodePage codePage) const",
+        "private GStrings m_pieces"
+      ]
+    },
+    {
+      "id": "GTokeniser",
+      "name": "GTokeniser",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gtokeniser.hpp"
+      ],
+      "members": [
+        "explicit GTokeniser(const GString& text)",
+        "GSubString operator()()",
+        "GSubString operator()(const GString& separators)",
+        "GSubString operator()(const GRegularExpression& separator)",
+        "bool IsDone() const",
+        "GSubString Rest() const",
+        "private GString m_text",
+        "private GSpot m_next"
+      ]
+    },
+    {
+      "id": "GRegularExpression",
+      "name": "GRegularExpression",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gregularexpression.hpp"
+      ],
+      "members": [
+        "explicit GRegularExpression(const GString& pattern, unsigned long options = GRegexOption::None, GDialect::Type dialect = GDialect::Everything)",
+        "GRegularExpression(const GRegularExpression& other)",
+        "~GRegularExpression()",
+        "GRegularExpression& operator=(const GRegularExpression& other)",
+        "bool IsValid() const",
+        "GString Error() const",
+        "GSpot ErrorAt() const",
+        "const GString& Pattern() const",
+        "bool Matches(const GString& subject) const",
+        "GMatch Search(const GString& subject) const",
+        "GMatch Search(const GString& subject, const GSpot& from) const",
+        "GMatches SearchAll(const GString& subject) const",
+        "GString Replace(const GString& subject, const GString& replacement) const",
+        "GString ReplaceFirst(const GString& subject, const GString& replacement) const",
+        "GSubStrings Split(const GString& subject) const",
+        "static GString Escape(const GString& text)",
+        "private GString m_pattern",
+        "private unsigned long m_options",
+        "private GDialect::Type m_dialect",
+        "private Program* m_program"
+      ]
+    },
+    {
+      "id": "GRegularExpression.Program",
+      "name": "GRegularExpression::Program",
+      "kind": "struct",
+      "sources": [
+        "src/gstring/gregularexpression.hpp"
+      ],
+      "members": []
+    },
+    {
+      "id": "GMatch",
+      "name": "GMatch",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gregularexpression.hpp"
+      ],
+      "members": [
+        "GMatch()",
+        "GMatchOutcome::Type Outcome() const",
+        "bool IsMatch() const",
+        "GSubString Whole() const",
+        "GSubString Group(int number) const",
+        "GSubString Group(const GString& name) const",
+        "int GroupCount() const",
+        "GSpot Begin() const",
+        "GSpot End() const",
+        "private GMatchOutcome::Type m_outcome",
+        "private GSubStrings m_groups",
+        "private GStrings m_names"
+      ]
+    },
+    {
+      "id": "GDialect",
+      "name": "GDialect::Type",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gregularexpression.hpp"
+      ],
+      "members": [
+        "Everything",
+        "Perl",
+        "PosixBasic",
+        "PosixExtended",
+        "RogueWave",
+        "Wildcard"
+      ]
+    },
+    {
+      "id": "GRegexOption",
+      "name": "GRegexOption::Flag",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gregularexpression.hpp"
+      ],
+      "members": [
+        "None = 0x00",
+        "IgnoreCase = 0x01",
+        "Multiline = 0x02",
+        "DotMatchesNewline = 0x04",
+        "Extended = 0x08",
+        "Anchored = 0x10"
+      ]
+    },
+    {
+      "id": "GMatchOutcome",
+      "name": "GMatchOutcome::Type",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gregularexpression.hpp"
+      ],
+      "members": [
+        "Matched",
+        "NoMatch",
+        "TooAmbitious"
+      ]
+    },
+    {
+      "id": "GFormatArg",
+      "name": "GFormatArg",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gformat.hpp"
+      ],
+      "members": [
+        "GFormatArg(const GString& text)",
+        "GFormatArg(const char* text)",
+        "GFormatArg(const wchar_t* text)",
+        "GFormatArg(int value)",
+        "GFormatArg(long value)",
+        "GFormatArg(unsigned long value)",
+        "GFormatArg(double value)",
+        "GFormatArg(bool value)",
+        "Kind::Type GetKind() const",
+        "private Kind::Type m_kind",
+        "private const GString* m_string",
+        "private const char* m_narrow",
+        "private const wchar_t* m_wide",
+        "private long m_signed",
+        "private unsigned long m_unsigned",
+        "private double m_real",
+        "private bool m_boolean"
+      ]
+    },
+    {
+      "id": "GFormatArg.Kind",
+      "name": "GFormatArg::Kind::Type",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gformat.hpp"
+      ],
+      "members": [
+        "Text",
+        "Signed",
+        "Unsigned",
+        "Real",
+        "Boolean"
+      ]
+    },
+    {
+      "id": "GPayload",
+      "name": "GPayload",
+      "kind": "struct",
+      "sources": [
+        "src/gstring/gpayload.hpp"
+      ],
+      "members": [
+        "volatile long references",
+        "GCarrier::Type carrier",
+        "GEncoding::Type encoding",
+        "GCodePage codePage",
+        "GOwnership::Type ownership",
+        "const void* data",
+        "GLength units",
+        "static GPayload* Literal(const char* text, GEncoding::Type encoding)",
+        "static GPayload* Literal(const wchar_t* text)",
+        "static GPayload* Inline(GEncoding::Type encoding, GLength units)",
+        "void AddReference()",
+        "void Release()",
+        "bool IsLiteral() const",
+        "bool IsFixedWidth() const",
+        "bool CanBeShared() const"
+      ]
+    },
+    {
+      "id": "GBody",
+      "name": "GBody",
+      "kind": "struct",
+      "sources": [
+        "src/gstring/gpayload.hpp"
+      ],
+      "members": [
+        "volatile long references",
+        "unsigned long generation",
+        "unsigned long known",
+        "GLength characters",
+        "GHash hash",
+        "GHash hashIgnoringCase",
+        "GPayload* payload",
+        "void AddReference()",
+        "void Release()",
+        "bool IsShared() const",
+        "void Replace(GPayload* replacement)"
+      ]
+    },
+    {
+      "id": "GBody.Known",
+      "name": "GBody::Known",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gpayload.hpp"
+      ],
+      "members": [
+        "KnowsCharacters = 0x01",
+        "KnowsHash = 0x02",
+        "KnowsHashIgnoringCase = 0x04",
+        "KnowsAscii = 0x08",
+        "KnowsNotAscii = 0x10"
+      ]
+    },
+    {
+      "id": "GCarrier",
+      "name": "GCarrier::Type",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gpayload.hpp"
+      ],
+      "members": [
+        "Null",
+        "CharPointer",
+        "WideCharPointer",
+        "CodePointArray",
+        "Bstr",
+        "StdString",
+        "StdWString",
+        "RogueWaveString",
+        "RogueWaveWString",
+        "MfcString",
+        "StringList",
+        "Slice"
+      ]
+    },
+    {
+      "id": "GOwnership",
+      "name": "GOwnership::Type",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gpayload.hpp"
+      ],
+      "members": [
+        "Literal",
+        "Borrowed",
+        "Inline",
+        "ArrayNew",
+        "Malloc",
+        "SysAlloc",
+        "HeldObject"
+      ]
+    },
+    {
+      "id": "GEncoding",
+      "name": "GEncoding::Type",
+      "kind": "enum",
+      "sources": [
+        "src/gstring/gencoding.hpp"
+      ],
+      "members": [
+        "Ascii",
+        "Latin1",
+        "CodePage",
+        "ProcessCodePage",
+        "Utf8",
+        "ModifiedUtf8",
+        "Utf16",
+        "Utf32"
+      ]
+    },
+    {
+      "id": "GCodePage",
+      "name": "GCodePage",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gencoding.hpp"
+      ],
+      "members": [
+        "typedef unsigned short GCodePage"
+      ]
+    },
+    {
+      "id": "GCodePoint",
+      "name": "GCodePoint",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "typedef unsigned long GCodePoint"
+      ]
+    },
+    {
+      "id": "GLength",
+      "name": "GLength",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "typedef unsigned long GLength"
+      ]
+    },
+    {
+      "id": "GHash",
+      "name": "GHash",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "typedef unsigned long GHash"
+      ]
+    },
+    {
+      "id": "GStrings",
+      "name": "GStrings",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gfwd.hpp"
+      ],
+      "members": [
+        "typedef std::vector<GString> GStrings"
+      ]
+    },
+    {
+      "id": "GSubStrings",
+      "name": "GSubStrings",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gfwd.hpp"
+      ],
+      "members": [
+        "typedef std::vector<GSubString> GSubStrings"
+      ]
+    },
+    {
+      "id": "GMatches",
+      "name": "GMatches",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gregularexpression.hpp"
+      ],
+      "members": [
+        "typedef std::vector<GMatch> GMatches"
+      ]
+    },
+    {
+      "id": "RWCString",
+      "name": "RWCString",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "Rogue Wave's narrow string; declared, not included"
+      ],
+      "external": true
+    },
+    {
+      "id": "RWWString",
+      "name": "RWWString",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "Rogue Wave's wide string; declared, not included"
+      ],
+      "external": true
+    },
+    {
+      "id": "CString",
+      "name": "CString",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "MFC's string; declared, not included"
+      ],
+      "external": true
+    },
+    {
+      "id": "_bstr_t",
+      "name": "_bstr_t",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "the compiler's BSTR wrapper; declared, not included"
+      ],
+      "external": true
+    },
+    {
+      "id": "CComBSTR",
+      "name": "CComBSTR",
+      "kind": "class",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "ATL's BSTR wrapper; declared, not included"
+      ],
+      "external": true
+    },
+    {
+      "id": "BSTR",
+      "name": "BSTR",
+      "kind": "type",
+      "sources": [
+        "src/gstring/gconfig.hpp"
+      ],
+      "members": [
+        "OLECHAR*, from oleauto.h on Windows, or typedef'd under GSTRING_SYNTAX_CHECK"
+      ],
+      "external": true
+    }
+  ],
+  "relationships": [
+    {
+      "from": "GString",
+      "to": "GBody",
+      "kind": "depends-on",
+      "description": "Holds a mutable GBody* (m_body) that many GStrings share; MakeUnique copies it when shared."
+    },
+    {
+      "from": "GString",
+      "to": "GEncoding",
+      "kind": "depends-on",
+      "description": "Narrow constructors, lengths and conversions name their encoding."
+    },
+    {
+      "from": "GString",
+      "to": "GCodePage",
+      "kind": "depends-on",
+      "description": "For GEncoding::CodePage."
+    },
+    {
+      "from": "GString",
+      "to": "GString.Step",
+      "kind": "depends-on",
+      "description": "Begin and End take the unit to step by."
+    },
+    {
+      "from": "GString",
+      "to": "GSpot",
+      "kind": "depends-on",
+      "description": "Find returns, and Mid, Between, Insert and Splice take, a GSpot."
+    },
+    {
+      "from": "GString",
+      "to": "GSubString",
+      "kind": "depends-on",
+      "description": "Left, Right, Mid, Before, After and Split return pieces; GString(const GSubString&) shares the original's storage."
+    },
+    {
+      "from": "GString",
+      "to": "GSubStrings",
+      "kind": "depends-on",
+      "description": "Split, SplitWords, SplitCharacters, SplitLines and Join."
+    },
+    {
+      "from": "GString",
+      "to": "GStrings",
+      "kind": "depends-on",
+      "description": "Join."
+    },
+    {
+      "from": "GString",
+      "to": "GRegularExpression",
+      "kind": "depends-on",
+      "description": "Contains, Find, Replace and Split take a pattern."
+    },
+    {
+      "from": "GString",
+      "to": "GFormatArg",
+      "kind": "depends-on",
+      "description": "Format takes up to five arguments."
+    },
+    {
+      "from": "GString",
+      "to": "GStringList",
+      "kind": "depends-on",
+      "description": "A friend; the header says operator+ builds a GStringList inside the result."
+    },
+    {
+      "from": "GString",
+      "to": "RWCString",
+      "kind": "depends-on",
+      "description": "Constructed from, and ToRogueWaveString."
+    },
+    {
+      "from": "GString",
+      "to": "RWWString",
+      "kind": "depends-on",
+      "description": "Constructed from, and ToRogueWaveWString."
+    },
+    {
+      "from": "GString",
+      "to": "CString",
+      "kind": "depends-on",
+      "description": "Constructed from, and ToCString."
+    },
+    {
+      "from": "GString",
+      "to": "_bstr_t",
+      "kind": "depends-on",
+      "description": "Constructed from."
+    },
+    {
+      "from": "GString",
+      "to": "CComBSTR",
+      "kind": "depends-on",
+      "description": "Constructed from."
+    },
+    {
+      "from": "GString",
+      "to": "BSTR",
+      "kind": "depends-on",
+      "description": "FromBstr, AdoptBstr and ToBstr."
+    },
+    {
+      "from": "GSpot",
+      "to": "GBody",
+      "kind": "depends-on",
+      "description": "Holds the body it walks (m_body) and the generation it last saw."
+    },
+    {
+      "from": "GSpot",
+      "to": "GString.Step",
+      "kind": "depends-on",
+      "description": "Its stepping (m_step)."
+    },
+    {
+      "from": "GSubString",
+      "to": "GString",
+      "kind": "depends-on",
+      "description": "Holds the original (m_original)."
+    },
+    {
+      "from": "GSubString",
+      "to": "GSpot",
+      "kind": "depends-on",
+      "description": "Its two ends (m_from, m_to)."
+    },
+    {
+      "from": "GStringList",
+      "to": "GStrings",
+      "kind": "depends-on",
+      "description": "Its pieces (m_pieces)."
+    },
+    {
+      "from": "GStringList",
+      "to": "GPayload",
+      "kind": "depends-on",
+      "description": "Flatten joins the pieces into one payload."
+    },
+    {
+      "from": "GStringList",
+      "to": "GEncoding",
+      "kind": "depends-on",
+      "description": "Flatten names the encoding."
+    },
+    {
+      "from": "GTokeniser",
+      "to": "GString",
+      "kind": "depends-on",
+      "description": "The text it splits (m_text)."
+    },
+    {
+      "from": "GTokeniser",
+      "to": "GSpot",
+      "kind": "depends-on",
+      "description": "Where the next token starts (m_next)."
+    },
+    {
+      "from": "GTokeniser",
+      "to": "GSubString",
+      "kind": "depends-on",
+      "description": "Every token is a piece."
+    },
+    {
+      "from": "GTokeniser",
+      "to": "GRegularExpression",
+      "kind": "depends-on",
+      "description": "Splits at a pattern."
+    },
+    {
+      "from": "GRegularExpression",
+      "to": "GString",
+      "kind": "depends-on",
+      "description": "Its pattern (m_pattern), and the subjects it searches."
+    },
+    {
+      "from": "GRegularExpression",
+      "to": "GDialect",
+      "kind": "depends-on",
+      "description": "Its dialect (m_dialect), Everything by default."
+    },
+    {
+      "from": "GRegularExpression",
+      "to": "GRegexOption",
+      "kind": "depends-on",
+      "description": "Its options (m_options)."
+    },
+    {
+      "from": "GRegularExpression",
+      "to": "GRegularExpression.Program",
+      "kind": "depends-on",
+      "description": "The compiled program (m_program), private and declared only."
+    },
+    {
+      "from": "GRegularExpression",
+      "to": "GMatch",
+      "kind": "depends-on",
+      "description": "Search returns one."
+    },
+    {
+      "from": "GRegularExpression",
+      "to": "GMatches",
+      "kind": "depends-on",
+      "description": "SearchAll returns them."
+    },
+    {
+      "from": "GMatch",
+      "to": "GMatchOutcome",
+      "kind": "depends-on",
+      "description": "Its outcome (m_outcome)."
+    },
+    {
+      "from": "GMatch",
+      "to": "GSubStrings",
+      "kind": "depends-on",
+      "description": "Its groups, the whole match first (m_groups)."
+    },
+    {
+      "from": "GMatch",
+      "to": "GStrings",
+      "kind": "depends-on",
+      "description": "The groups' names (m_names)."
+    },
+    {
+      "from": "GMatch",
+      "to": "GSpot",
+      "kind": "depends-on",
+      "description": "Begin and End."
+    },
+    {
+      "from": "GFormatArg",
+      "to": "GString",
+      "kind": "depends-on",
+      "description": "A Text argument may point at a GString (m_string)."
+    },
+    {
+      "from": "GFormatArg",
+      "to": "GFormatArg.Kind",
+      "kind": "depends-on",
+      "description": "Its kind (m_kind)."
+    },
+    {
+      "from": "GPayload",
+      "to": "GCarrier",
+      "kind": "depends-on",
+      "description": "What the data pointer points to."
+    },
+    {
+      "from": "GPayload",
+      "to": "GEncoding",
+      "kind": "depends-on",
+      "description": "What the bytes mean."
+    },
+    {
+      "from": "GPayload",
+      "to": "GCodePage",
+      "kind": "depends-on",
+      "description": "For GEncoding::CodePage only."
+    },
+    {
+      "from": "GPayload",
+      "to": "GOwnership",
+      "kind": "depends-on",
+      "description": "Who frees the native string, and how."
+    },
+    {
+      "from": "GBody",
+      "to": "GPayload",
+      "kind": "depends-on",
+      "description": "The payload it shares (payload); Replace swaps it and bumps the generation."
+    },
+    {
+      "from": "GBody",
+      "to": "GBody.Known",
+      "kind": "depends-on",
+      "description": "Which caches are filled in (known)."
+    },
+    {
+      "from": "GStrings",
+      "to": "GString",
+      "kind": "depends-on",
+      "description": "A std::vector of them."
+    },
+    {
+      "from": "GSubStrings",
+      "to": "GSubString",
+      "kind": "depends-on",
+      "description": "A std::vector of them."
+    },
+    {
+      "from": "GMatches",
+      "to": "GMatch",
+      "kind": "depends-on",
+      "description": "A std::vector of them."
+    }
+  ]
+}

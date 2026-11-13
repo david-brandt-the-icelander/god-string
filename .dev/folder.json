@@ -1,0 +1,49 @@
+{
+  "$schema": "../Meta/Agents/Knowledge/schemas/folder.schema.json",
+  "kind": "folder",
+  "title": "god-string",
+  "folder": ".",
+  "entities": [
+    {
+      "id": "folder",
+      "title": "god-string",
+      "summary": "A recreation of the god-string used in iPulse: The Great String War, a series of articles about GString, and a speculative reconstruction of GString's headers.",
+      "purpose": "The repository root holds the README a person reads first, the articles in articles/, the headers in src/, the actor the .dev files name in Actors/, the skills and knowledge catalogue the .dev files follow in Meta/Agents/, and the agent instructions in AGENTS.md.",
+      "boundaries": [
+        "Nothing here is built, tested by a workflow or deployed; the only check of the code is the headers' syntax check, run by hand.",
+        "The published articles live in the icelander.net repository; this repository keeps the working copies.",
+        "Meta/Agents/Skills and Meta/Agents/Knowledge are copies from the human-assisted-software-development repository, changed there and copied here.",
+        "Licensed under the Mozilla Public License 2.0."
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "README.md",
+          "symbol": "god-string"
+        },
+        {
+          "path": "AGENTS.md",
+          "symbol": "Architecture diagrams and knowledge files"
+        },
+        {
+          "path": "LICENSE",
+          "symbol": "Mozilla Public License Version 2.0"
+        }
+      ],
+      "links": [
+        {
+          "path": "README.md",
+          "label": "README"
+        },
+        {
+          "path": "AGENTS.md",
+          "label": "Agent instructions"
+        },
+        {
+          "path": ".dev/component-diagram.json",
+          "label": "The repository's parts"
+        }
+      ]
+    }
+  ]
+}

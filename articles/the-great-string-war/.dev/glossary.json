@@ -1,0 +1,80 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/glossary.schema.json",
+  "kind": "glossary",
+  "title": "Terms in The Great String War",
+  "folder": "articles/the-great-string-war",
+  "entities": [
+    {
+      "id": "y",
+      "title": "Y",
+      "summary": "The programming language the author is building now; part 11 says what it kept from GString, and part 10 what it does about regular expressions.",
+      "notToBeConfusedWith": [
+        "GString, which Y learns from but is not"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/11-every-method-you-could-want.md",
+          "symbol": "What Y kept"
+        },
+        {
+          "path": "articles/the-great-string-war/10-crazier-than-cocaine-bear.md",
+          "symbol": "What Y does"
+        }
+      ]
+    },
+    {
+      "id": "working-copy",
+      "title": "Working copy",
+      "summary": "A part as kept in this folder: British spelling, the date line, the opening note on memory, and references to other parts by italic title.",
+      "notToBeConfusedWith": [
+        "Site copy"
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        }
+      ]
+    },
+    {
+      "id": "site-copy",
+      "title": "Site copy",
+      "summary": "A part as published on icelander.net, kept in that repository under articles/the_great_string_war/, with front matter, US spelling and links between the parts.",
+      "notToBeConfusedWith": [
+        "Working copy"
+      ],
+      "evidenceStatus": "documented",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/README.md",
+          "symbol": "The Great String War"
+        }
+      ],
+      "relationships": [
+        {
+          "relation": "relates-to",
+          "path": "articles/the-great-string-war/.dev/decisions.json",
+          "entityId": "working-copies"
+        }
+      ]
+    },
+    {
+      "id": "falsehood",
+      "title": "Falsehood",
+      "summary": "Something programmers believe about strings or localisation that isn't true, in the genre of lists that began with Falsehoods programmers believe about names in 2010; parts 2 and 3 give GString's verdict on each.",
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "articles/the-great-string-war/02-falsehoods-programmers-believe-about-strings.md",
+          "symbol": "Falsehoods programmers believe about strings"
+        },
+        {
+          "path": "articles/the-great-string-war/03-falsehoods-programmers-believe-about-localisation.md",
+          "symbol": "Falsehoods programmers believe about localisation"
+        }
+      ]
+    }
+  ]
+}

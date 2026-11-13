@@ -1,0 +1,41 @@
+{
+  "$schema": "../../../Meta/Agents/Knowledge/schemas/verification.schema.json",
+  "kind": "verification",
+  "title": "How the GString headers are checked",
+  "folder": "src/gstring",
+  "entities": [
+    {
+      "id": "syntax-check",
+      "title": "The headers are well-formed C++",
+      "summary": "all.hpp, and so every header, compiles as C++98 and as C++17, with GCC and with Clang, when GSTRING_SYNTAX_CHECK is defined.",
+      "subject": [
+        {
+          "path": "src/gstring/.dev/component-diagram.json"
+        }
+      ],
+      "criteria": [
+        "With -DGSTRING_SYNTAX_CHECK -Wall -Wextra -pedantic -fsyntax-only, including gstring/all.hpp gives no error and no warning under -std=c++98 and -std=c++17.",
+        "This holds for GCC and for Clang.",
+        "Passing says the declarations are well-formed, and nothing more: nothing is defined, so nothing links or runs."
+      ],
+      "checks": [
+        {
+          "type": "manual",
+          "command": "echo '#include \"gstring/all.hpp\"' | g++ -x c++ -std=c++98 -DGSTRING_SYNTAX_CHECK -Wall -Wextra -pedantic -Isrc -fsyntax-only -",
+          "description": "Run from the repository root; repeat with -std=c++17, and with clang++ in place of g++. No workflow runs it: the repository has no CI."
+        }
+      ],
+      "evidenceStatus": "source-verified",
+      "sources": [
+        {
+          "path": "src/gstring/README.md",
+          "symbol": "Checking them"
+        },
+        {
+          "path": "src/gstring/gconfig.hpp",
+          "symbol": "GSTRING_SYNTAX_CHECK"
+        }
+      ]
+    }
+  ]
+}
